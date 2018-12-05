@@ -1,0 +1,31 @@
+package main
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/zhs007/jarviscore"
+	"github.com/zhs007/jarvissh/basedef"
+)
+
+func main() {
+	fmt.Print("jarvis viewer start...")
+	fmt.Print("jarvis viewer version is " + basedef.VERSION)
+
+	cfg, err := jarviscore.LoadConfig("cfg/config.yaml")
+	if err != nil {
+		fmt.Print("load config.yaml fail!")
+
+		return
+	}
+
+	jarviscore.InitJarvisCore(cfg)
+	defer jarviscore.ReleaseJarvisCore()
+
+	node := jarviscore.NewNode(cfg)
+	node.SetNodeTypeInfo(basedef.JARVISNODETYPE, basedef.VERSION)
+
+	node.Start(context.Background())
+
+	fmt.Print("jarvis viewer end.")
+}
