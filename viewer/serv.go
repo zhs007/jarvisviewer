@@ -2,8 +2,6 @@ package viewer
 
 import (
 	"context"
-	"encoding/json"
-	"io/ioutil"
 	"net/http"
 	"time"
 )
@@ -14,19 +12,19 @@ type HTTPServer struct {
 	serv *http.Server
 }
 
-func (s *HTTPServer) procGraphQL(w http.ResponseWriter, r *http.Request) []byte {
-	// ankadbname := r.Header.Get("Ankadbname")
+// func (s *HTTPServer) procGraphQL(w http.ResponseWriter, r *http.Request) []byte {
+// 	// ankadbname := r.Header.Get("Ankadbname")
 
-	req, _ := ioutil.ReadAll(r.Body)
-	defer r.Body.Close()
+// 	req, _ := ioutil.ReadAll(r.Body)
+// 	defer r.Body.Close()
 
-	return req
-}
+// 	return req
+// }
 
-func (s *HTTPServer) onGraphQL(w http.ResponseWriter, r *http.Request) {
-	result := s.procGraphQL(w, r)
+func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
+	// result := s.procGraphQL(w, r)
 
-	json.NewEncoder(w).Encode(result)
+	// json.NewEncoder(w).Encode(result)
 }
 
 // HTTPServer -
@@ -42,12 +40,12 @@ func newHTTPServer() (*HTTPServer, error) {
 func (s *HTTPServer) start(ctx context.Context) error {
 
 	mux := http.NewServeMux()
-	mux.HandleFunc("/graphql", func(w http.ResponseWriter, r *http.Request) {
-		s.onGraphQL(w, r)
+	mux.HandleFunc("/getdata", func(w http.ResponseWriter, r *http.Request) {
+		s.onViewerData(w, r)
 	})
 
-	fsh := http.FileServer(http.Dir("./www/graphiql"))
-	mux.Handle("/graphiql/", http.StripPrefix("/graphiql/", fsh))
+	// fsh := http.FileServer(http.Dir("./www/graphiql"))
+	// mux.Handle("/graphiql/", http.StripPrefix("/graphiql/", fsh))
 
 	server := &http.Server{
 		Addr:         s.addr,
