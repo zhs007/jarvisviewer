@@ -1,0 +1,33 @@
+type GraphNode {
+    id: Int!
+    name: String!
+    size: Int
+    category: String
+}
+
+type GraphLink {
+    src: Int!
+    dest: Int!
+    size: Int
+}
+
+type GraphData {
+    nodes: [GraphNode]!
+    links: [GraphLink]!
+}
+
+type ViewerData {
+    type: Int!
+    title: String
+    token: ID!
+
+    graph: GraphData
+}
+
+type Query {
+    viewerData(token: ID!): ViewerData!
+}
+
+type Mutation {
+    updViewerData(dat: ViewerData!): ViewerData!
+}

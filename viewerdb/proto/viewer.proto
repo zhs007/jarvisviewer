@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package viewerdbpb;
+
+enum ViewerType {
+    EMPTY = 0;
+    GRAPH = 1;
+}
+
+message GraphNode {
+    int32 id = 1;
+    string name = 2;
+    int32 size = 3;
+    string category = 4;
+}
+
+message GraphLink {
+    int32 src = 1;
+    int32 dest = 2;
+    int32 size = 3;
+}
+
+message GraphData {
+    repeated GraphNode nodes = 1;
+    repeated GraphLink links = 2;
+}
+
+message ViewerData {
+    ViewerType type = 1;
+    string title = 2;
+    string token = 3;
+
+    oneof data {
+        GraphData graph = 1000;
+    }
+}

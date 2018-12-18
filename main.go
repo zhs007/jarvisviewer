@@ -6,6 +6,7 @@ import (
 
 	"github.com/zhs007/jarviscore"
 	"github.com/zhs007/jarvissh/basedef"
+	"github.com/zhs007/jarvisviewer/viewer"
 )
 
 func main() {
@@ -23,6 +24,7 @@ func main() {
 	defer jarviscore.ReleaseJarvisCore()
 
 	node := jarviscore.NewNode(cfg)
+	node.RegCtrl(viewer.CtrlTypeViewer, &viewer.CtrlJarvisViewer{})
 	node.SetNodeTypeInfo(basedef.JARVISNODETYPE, basedef.VERSION)
 
 	node.Start(context.Background())

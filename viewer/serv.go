@@ -21,49 +21,18 @@ func (s *HTTPServer) procGraphQL(w http.ResponseWriter, r *http.Request) []byte 
 	defer r.Body.Close()
 
 	return req
-
-	// var mapreq map[string]interface{}
-	// err := json.Unmarshal([]byte(req), &mapreq)
-	// if err != nil {
-	// 	return MakeGraphQLErrorResult(err)
-	// }
-
-	// querystr, ok := mapreq["query"].(string)
-	// if !ok {
-	// 	return MakeGraphQLErrorResult(ErrHTTPNoQuery)
-	// }
-
-	// mapval, ok1 := mapreq["variables"].(map[string]interface{})
-	// if !ok1 {
-	// 	mapval = nil
-	// 	// return MakeGraphQLErrorResult(pb.CODE_HTTP_VARIABLE_ERR)
-	// }
-
-	// // curdb := s.anka.MgrDB.GetDB(ankadbname)
-	// curctx := context.WithValue(r.Context(), interface{}("ankadb"), s.anka)
-
-	// result1, err := s.anka.logic.OnQuery(curctx, querystr, mapval)
-	// if err != nil {
-	// 	return MakeGraphQLErrorResult(err)
-	// }
-
-	// return nil
 }
 
 func (s *HTTPServer) onGraphQL(w http.ResponseWriter, r *http.Request) {
-	// if r.RequestURI == "/graphql" {
 	result := s.procGraphQL(w, r)
 
 	json.NewEncoder(w).Encode(result)
-	// }
 }
 
 // HTTPServer -
 func newHTTPServer() (*HTTPServer, error) {
 
 	s := &HTTPServer{
-		// anka: anka,
-		// addr: anka.cfg.AddrHTTP,
 		serv: nil,
 	}
 
