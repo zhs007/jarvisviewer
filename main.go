@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/zhs007/jarvissh/basedef"
+	"github.com/zhs007/jarvisviewer/basedef"
 	"github.com/zhs007/jarvisviewer/viewer"
 )
 

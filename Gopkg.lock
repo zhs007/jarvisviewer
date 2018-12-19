@@ -93,16 +93,10 @@
   version = "v0.6.23"
 
 [[projects]]
-  name = "github.com/zhs007/jarvissh"
-  packages = ["basedef"]
-  revision = "f6bda0f85deed4a637a75bb38cb4627c21bafcc4"
-  version = "v0.1.12"
-
-[[projects]]
   name = "go.uber.org/atomic"
   packages = ["."]
-  revision = "4e336646b2ef9fc6e47be8e21594178f98e5ebcf"
-  version = "v1.2.0"
+  revision = "1ea20fb1cbb1cc08cbd0d913a96dead89aa18289"
+  version = "v1.3.2"
 
 [[projects]]
   name = "go.uber.org/multierr"
@@ -223,6 +217,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "c738b8fbd944fc0cdad56cef29ba94bd63b822da8e5f947ea76fa01e86a14c4f"
+  inputs-digest = "7e9757ab5cd005efaf1276f62ce6f9b0eecbd63fd3730938735217e676bbdd7a"
   solver-name = "gps-cdcl"
   solver-version = 1
