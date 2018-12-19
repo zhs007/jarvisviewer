@@ -1,0 +1,15 @@
+#jarvis viewer config
+
+# bindaddr - jarvis viewer bind address
+bindaddr: ':7710'
+# servaddr - jarvis server address
+servaddr: '127.0.0.1:7710'
+# jarvisnodecfg - jarvis node config
+jarvisnodecfg: './cfg/jarvisnode.yaml'
+
+# ankadb - ankadb config
+ankadb:
+  # dbpath - dbpath
+  dbpath: './dat'
+  # ankadb engine
+  engine: 'leveldb'

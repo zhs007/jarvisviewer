@@ -2,7 +2,9 @@ package viewer
 
 import (
 	"context"
+	"io/ioutil"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -22,15 +24,28 @@ type HTTPServer struct {
 // }
 
 func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
+	fi, err := os.Open("./test/graph.json")
+	if err != nil {
+		return
+	}
+
+	defer fi.Close()
+	fd, err := ioutil.ReadAll(fi)
+	if err != nil {
+		return
+	}
+
+	w.Write(fd)
+
 	// result := s.procGraphQL(w, r)
 
 	// json.NewEncoder(w).Encode(result)
 }
 
 // HTTPServer -
-func newHTTPServer() (*HTTPServer, error) {
-
+func newHTTPServer(addr string) (*HTTPServer, error) {
 	s := &HTTPServer{
+		addr: addr,
 		serv: nil,
 	}
 

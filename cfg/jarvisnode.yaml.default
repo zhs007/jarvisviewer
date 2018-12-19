@@ -34,7 +34,7 @@ log:
 # basenodeinfo - my node base config  
 basenodeinfo:
   # nodename - my node name
-  nodename: 'node001'
+  nodename: 'jarvisviewer'
   # bindaddr - my bind address
   bindaddr: ':7788'
   # servaddr - other node connct me

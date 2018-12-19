@@ -4,30 +4,38 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/zhs007/jarviscore"
 	"github.com/zhs007/jarvissh/basedef"
 	"github.com/zhs007/jarvisviewer/viewer"
 )
 
 func main() {
-	fmt.Print("jarvis viewer start...")
-	fmt.Print("jarvis viewer version is " + basedef.VERSION)
+	fmt.Print("jarvis viewer start...\n")
+	fmt.Print("jarvis viewer version is " + basedef.VERSION + "\n")
 
-	cfg, err := jarviscore.LoadConfig("cfg/config.yaml")
+	cfg, err := viewer.LoadConfig("cfg/config.yaml")
 	if err != nil {
 		fmt.Print("load config.yaml fail!")
 
 		return
 	}
 
-	jarviscore.InitJarvisCore(cfg)
-	defer jarviscore.ReleaseJarvisCore()
+	jv, err := viewer.NewViewer(cfg)
+	if err != nil {
+		fmt.Print(err.Error())
 
-	node := jarviscore.NewNode(cfg)
-	node.RegCtrl(viewer.CtrlTypeViewer, &viewer.CtrlJarvisViewer{})
-	node.SetNodeTypeInfo(basedef.JARVISNODETYPE, basedef.VERSION)
+		return
+	}
 
-	node.Start(context.Background())
+	jv.Start(context.Background())
 
-	fmt.Print("jarvis viewer end.")
+	// jarviscore.InitJarvisCore(cfg)
+	// defer jarviscore.ReleaseJarvisCore()
+
+	// node := jarviscore.NewNode(cfg)
+	// node.RegCtrl(viewer.CtrlTypeViewer, &viewer.CtrlJarvisViewer{})
+	// node.SetNodeTypeInfo(basedef.JARVISNODETYPE, basedef.VERSION)
+
+	// node.Start(context.Background())
+
+	fmt.Print("jarvis viewer end.\n")
 }
