@@ -24,6 +24,8 @@ type HTTPServer struct {
 // }
 
 func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
 	fi, err := os.Open("./test/graph.json")
 	if err != nil {
 		return
