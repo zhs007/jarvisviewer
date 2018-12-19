@@ -14,3 +14,5 @@
 cfg/*.yaml
 jarvisviewer
 vendor
+dat
+logs
