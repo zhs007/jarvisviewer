@@ -63,12 +63,17 @@ message LineSeriesData {
 message LineData {
     // xAxisType
     string xAxisType = 1;
-    // xAxisData
-    repeated string xAxisData = 2;
+    // xAxisString
+    repeated string xAxisString = 2;
+    // xAxisInt32
+    repeated int32 xAxisInt32 = 3;
+    // xAxisInt64
+    repeated int64 xAxisInt64 = 4;    
+
     // yAxisType
-    string yAxisType = 3;
+    string yAxisType = 10;
     // xAxisData
-    repeated LineSeriesData series = 4;
+    repeated LineSeriesData series = 11;
 }
 
 // ViewerData - viewer data
