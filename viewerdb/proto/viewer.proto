@@ -2,41 +2,68 @@ syntax = "proto3";
 
 package viewerdbpb;
 
+// ViewerType - Viewer type
+//            - 数据类型
 enum ViewerType {
     EMPTY = 0;
     GRAPH = 1;
     JSON = 2;
 }
 
+// GraphNode - Graph node
+//           - 图节点
 message GraphNode {
+    // id
     int32 id = 1;
+    // name
     string name = 2;
+    // size
     int32 size = 3;
+    // category
     string category = 4;
 }
 
+// GraphLink - Graph link info
+//           - 图节点连接关系
 message GraphLink {
+    // src
     int32 src = 1;
+    // dest
     int32 dest = 2;
+    // size
     int32 size = 3;
 }
 
+// GraphData - Graph data
+//           - 图节点完整数据
 message GraphData {
+    // nodes
     repeated GraphNode nodes = 1;
+    // links
     repeated GraphLink links = 2;
 }
 
+// JSONData - JSON data
+//          - json格式的数据
 message JSONData {
+    // string for json
     string str = 1;
 }
 
+// ViewerData - viewer data
+//            - viewer数据
 message ViewerData {
+    // type
     ViewerType type = 1;
+    // title
     string title = 2;
+    // token
     string token = 3;
 
     oneof data {
+        // graph - valid only type is GRAPH
         GraphData graph = 1000;
+        // json - valid only type is JSON
         JSONData json = 1001;
     }
 }
