@@ -5,6 +5,7 @@ package viewerdbpb;
 enum ViewerType {
     EMPTY = 0;
     GRAPH = 1;
+    JSON = 2;
 }
 
 message GraphNode {
@@ -25,6 +26,10 @@ message GraphData {
     repeated GraphLink links = 2;
 }
 
+message JSONData {
+    string str = 1;
+}
+
 message ViewerData {
     ViewerType type = 1;
     string title = 2;
@@ -32,5 +37,6 @@ message ViewerData {
 
     oneof data {
         GraphData graph = 1000;
+        JSONData json = 1001;
     }
 }

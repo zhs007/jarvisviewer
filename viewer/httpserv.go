@@ -2,11 +2,34 @@ package viewer
 
 import (
 	"context"
+	"encoding/json"
 	"io/ioutil"
 	"net/http"
 	"os"
 	"time"
+
+	"github.com/zhs007/jarvisviewer/viewerdb/proto"
 )
+
+// NoteGraphKey -
+type NoteGraphKey struct {
+	ID    int
+	Key   string
+	Times int
+}
+
+// NoteGraphLink -
+type NoteGraphLink struct {
+	Src   int
+	Dest  int
+	Times int
+}
+
+// NoteGraph -
+type NoteGraph struct {
+	Keys  []*NoteGraphKey
+	Links []*NoteGraphLink
+}
 
 // HTTPServer -
 type HTTPServer struct {
@@ -26,22 +49,98 @@ type HTTPServer struct {
 func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
-	fi, err := os.Open("./test/graph.json")
-	if err != nil {
-		return
+	token := r.URL.Query().Get("token")
+	if token == "123456" {
+		fi, err := os.Open("./test/graph.json")
+		if err != nil {
+			return
+		}
+
+		defer fi.Close()
+		fd, err := ioutil.ReadAll(fi)
+		if err != nil {
+			return
+		}
+
+		ng := &NoteGraph{}
+		err = json.Unmarshal(fd, &ng)
+		if err != nil {
+			return
+		}
+
+		gd := &viewerdbpb.GraphData{}
+
+		for _, v := range ng.Keys {
+			k := &viewerdbpb.GraphNode{
+				Id:       int32(v.ID),
+				Name:     v.Key,
+				Size:     int32(v.Times),
+				Category: "Category0",
+			}
+
+			gd.Nodes = append(gd.Nodes, k)
+		}
+
+		for _, v := range ng.Links {
+			k := &viewerdbpb.GraphLink{
+				Src:  int32(v.Src),
+				Dest: int32(v.Dest),
+				Size: int32(v.Times),
+			}
+
+			gd.Links = append(gd.Links, k)
+		}
+
+		vgd := &viewerdbpb.ViewerData_Graph{
+			Graph: gd,
+		}
+
+		vd := &viewerdbpb.ViewerData{
+			Type:  viewerdbpb.ViewerType_GRAPH,
+			Title: "知识库关系图",
+			Token: "123456",
+			Data:  vgd,
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "234567" {
+		fi, err := os.Open("./test/graph.json")
+		if err != nil {
+			return
+		}
+
+		defer fi.Close()
+		fd, err := ioutil.ReadAll(fi)
+		if err != nil {
+			return
+		}
+
+		jd := &viewerdbpb.JSONData{}
+		jd.Str = string(fd)
+
+		vjd := &viewerdbpb.ViewerData_Json{
+			Json: jd,
+		}
+
+		vd := &viewerdbpb.ViewerData{
+			Type:  viewerdbpb.ViewerType_JSON,
+			Title: "知识库",
+			Token: "234567",
+			Data:  vjd,
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
 	}
-
-	defer fi.Close()
-	fd, err := ioutil.ReadAll(fi)
-	if err != nil {
-		return
-	}
-
-	w.Write(fd)
-
-	// result := s.procGraphQL(w, r)
-
-	// json.NewEncoder(w).Encode(result)
 }
 
 // HTTPServer -
