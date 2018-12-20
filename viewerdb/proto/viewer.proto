@@ -8,6 +8,7 @@ enum ViewerType {
     EMPTY = 0;
     GRAPH = 1;
     JSON = 2;
+    LINE = 3;
 }
 
 // GraphNode - Graph node
@@ -50,6 +51,26 @@ message JSONData {
     string str = 1;
 }
 
+// LineSeriesData - Line series data
+//                - 折线图数据
+message LineSeriesData {
+    string name = 1;
+    repeated int32 val = 2;
+}
+
+// LineData - Line data
+//           - 折线图完整数据
+message LineData {
+    // xAxisType
+    string xAxisType = 1;
+    // xAxisData
+    repeated string xAxisData = 2;
+    // yAxisType
+    string yAxisType = 3;
+    // xAxisData
+    repeated LineSeriesData series = 4;
+}
+
 // ViewerData - viewer data
 //            - viewer数据
 message ViewerData {
@@ -65,5 +86,7 @@ message ViewerData {
         GraphData graph = 1000;
         // json - valid only type is JSON
         JSONData json = 1001;
+        // line - valid only type is LINE
+        LineData line = 1002;
     }
 }
