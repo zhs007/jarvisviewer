@@ -47,6 +47,214 @@ type HTTPServer struct {
 	serv *http.Server
 }
 
+func buildGraph(fn string) (*viewerdbpb.ViewerData, error) {
+	fi, err := os.Open(fn)
+	if err != nil {
+		return nil, err
+	}
+
+	defer fi.Close()
+	fd, err := ioutil.ReadAll(fi)
+	if err != nil {
+		return nil, err
+	}
+
+	ng := &NoteGraph{}
+	err = json.Unmarshal(fd, &ng)
+	if err != nil {
+		return nil, err
+	}
+
+	gd := &viewerdbpb.GraphData{}
+
+	for _, v := range ng.Keys {
+		k := &viewerdbpb.GraphNode{
+			Id:       int32(v.ID),
+			Name:     v.Key,
+			Size:     int32(v.Times),
+			Category: "Category0",
+		}
+
+		gd.Nodes = append(gd.Nodes, k)
+	}
+
+	for _, v := range ng.Links {
+		k := &viewerdbpb.GraphLink{
+			Src:  int32(v.Src),
+			Dest: int32(v.Dest),
+			Size: int32(v.Times),
+		}
+
+		gd.Links = append(gd.Links, k)
+	}
+
+	vgd := &viewerdbpb.ViewerData_Graph{
+		Graph: gd,
+	}
+
+	vd := &viewerdbpb.ViewerData{
+		Type:  viewerdbpb.ViewerType_GRAPH,
+		Title: "知识库关系图",
+		Token: "123456",
+		Data:  vgd,
+	}
+
+	return vd, nil
+}
+
+func buildJSON(fn string) (*viewerdbpb.ViewerData, error) {
+	fi, err := os.Open(fn)
+	if err != nil {
+		return nil, err
+	}
+
+	defer fi.Close()
+	fd, err := ioutil.ReadAll(fi)
+	if err != nil {
+		return nil, err
+	}
+
+	jd := &viewerdbpb.JSONData{}
+	jd.Str = string(fd)
+
+	vjd := &viewerdbpb.ViewerData_Json{
+		Json: jd,
+	}
+
+	vd := &viewerdbpb.ViewerData{
+		Type:  viewerdbpb.ViewerType_JSON,
+		Title: "知识库",
+		Token: "234567",
+		Data:  vjd,
+	}
+
+	return vd, nil
+}
+
+func buildLine(userid string) (*viewerdbpb.ViewerData, error) {
+	fi, err := os.Open("./test/" + userid + "_whackamole.json")
+	if err != nil {
+		return nil, err
+	}
+
+	defer fi.Close()
+	fd, err := ioutil.ReadAll(fi)
+	if err != nil {
+		return nil, err
+	}
+
+	ubl := &DTUserBetList{}
+	err = json.Unmarshal(fd, &ubl)
+	if err != nil {
+		return nil, err
+	}
+
+	ld := &viewerdbpb.LineData{
+		XAxisType: "int32",
+		YAxisType: "int64",
+	}
+
+	ldd := &viewerdbpb.LineSeriesData{
+		Name: userid + "'s money",
+	}
+
+	for i, v := range ubl.Arr {
+		ld.XAxisInt32 = append(ld.XAxisInt32, int32(i))
+		ldd.ValInt64 = append(ldd.ValInt64, v.Destmoney)
+	}
+
+	ld.Series = append(ld.Series, ldd)
+
+	vjd := &viewerdbpb.ViewerData_Line{
+		Line: ld,
+	}
+
+	vd := &viewerdbpb.ViewerData{
+		Type:  viewerdbpb.ViewerType_JSON,
+		Title: userid + "'s whackamole",
+		Token: userid,
+		Data:  vjd,
+	}
+
+	return vd, nil
+}
+
+func buildMulti(mytoken string, tokens []string) (*viewerdbpb.ViewerData, error) {
+	md := &viewerdbpb.MultiData{
+		Tokens: tokens,
+	}
+
+	vjd := &viewerdbpb.ViewerData_Multi{
+		Multi: md,
+	}
+
+	vd := &viewerdbpb.ViewerData{
+		Type:  viewerdbpb.ViewerType_MULTI,
+		Title: "multi",
+		Token: mytoken,
+		Data:  vjd,
+	}
+
+	return vd, nil
+}
+
+func buildLines(mytoken string, tokens []string) (*viewerdbpb.ViewerData, error) {
+	ld := &viewerdbpb.LineData{
+		XAxisType: "int32",
+		YAxisType: "int64",
+	}
+
+	for ci, v := range tokens {
+		fi, err := os.Open("./test/" + v + "_whackamole.json")
+		if err != nil {
+			return nil, err
+		}
+
+		defer fi.Close()
+		fd, err := ioutil.ReadAll(fi)
+		if err != nil {
+			return nil, err
+		}
+
+		ubl := &DTUserBetList{}
+		err = json.Unmarshal(fd, &ubl)
+		if err != nil {
+			return nil, err
+		}
+
+		ldd := &viewerdbpb.LineSeriesData{
+			Name: v + "'s money",
+		}
+
+		for i, v := range ubl.Arr {
+			if i > 200 {
+				break
+			}
+
+			if ci == 0 {
+				ld.XAxisInt32 = append(ld.XAxisInt32, int32(i))
+			}
+
+			ldd.ValInt64 = append(ldd.ValInt64, v.Destmoney)
+		}
+
+		ld.Series = append(ld.Series, ldd)
+	}
+
+	vjd := &viewerdbpb.ViewerData_Line{
+		Line: ld,
+	}
+
+	vd := &viewerdbpb.ViewerData{
+		Type:  viewerdbpb.ViewerType_JSON,
+		Title: "some user's whackamole",
+		Token: mytoken,
+		Data:  vjd,
+	}
+
+	return vd, nil
+}
+
 // func (s *HTTPServer) procGraphQL(w http.ResponseWriter, r *http.Request) []byte {
 // 	// ankadbname := r.Header.Get("Ankadbname")
 
@@ -61,55 +269,9 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 	token := r.URL.Query().Get("token")
 	if token == "123456" {
-		fi, err := os.Open("./test/graph.json")
+		vd, err := buildGraph("./test/graph.json")
 		if err != nil {
 			return
-		}
-
-		defer fi.Close()
-		fd, err := ioutil.ReadAll(fi)
-		if err != nil {
-			return
-		}
-
-		ng := &NoteGraph{}
-		err = json.Unmarshal(fd, &ng)
-		if err != nil {
-			return
-		}
-
-		gd := &viewerdbpb.GraphData{}
-
-		for _, v := range ng.Keys {
-			k := &viewerdbpb.GraphNode{
-				Id:       int32(v.ID),
-				Name:     v.Key,
-				Size:     int32(v.Times),
-				Category: "Category0",
-			}
-
-			gd.Nodes = append(gd.Nodes, k)
-		}
-
-		for _, v := range ng.Links {
-			k := &viewerdbpb.GraphLink{
-				Src:  int32(v.Src),
-				Dest: int32(v.Dest),
-				Size: int32(v.Times),
-			}
-
-			gd.Links = append(gd.Links, k)
-		}
-
-		vgd := &viewerdbpb.ViewerData_Graph{
-			Graph: gd,
-		}
-
-		vd := &viewerdbpb.ViewerData{
-			Type:  viewerdbpb.ViewerType_GRAPH,
-			Title: "知识库关系图",
-			Token: "123456",
-			Data:  vgd,
 		}
 
 		jsonBytes, err := json.Marshal(vd)
@@ -119,29 +281,9 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "234567" {
-		fi, err := os.Open("./test/graph.json")
+		vd, err := buildJSON("./test/graph.json")
 		if err != nil {
 			return
-		}
-
-		defer fi.Close()
-		fd, err := ioutil.ReadAll(fi)
-		if err != nil {
-			return
-		}
-
-		jd := &viewerdbpb.JSONData{}
-		jd.Str = string(fd)
-
-		vjd := &viewerdbpb.ViewerData_Json{
-			Json: jd,
-		}
-
-		vd := &viewerdbpb.ViewerData{
-			Type:  viewerdbpb.ViewerType_JSON,
-			Title: "知识库",
-			Token: "234567",
-			Data:  vjd,
 		}
 
 		jsonBytes, err := json.Marshal(vd)
@@ -151,48 +293,57 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "10655" {
-		fi, err := os.Open("./test/10655_whackamole.json")
+		vd, err := buildLine("10655")
 		if err != nil {
 			return
 		}
 
-		defer fi.Close()
-		fd, err := ioutil.ReadAll(fi)
+		jsonBytes, err := json.Marshal(vd)
 		if err != nil {
 			return
 		}
 
-		ubl := &DTUserBetList{}
-		err = json.Unmarshal(fd, &ubl)
+		w.Write(jsonBytes)
+	} else if token == "10656" {
+		vd, err := buildLine("10656")
 		if err != nil {
 			return
 		}
 
-		ld := &viewerdbpb.LineData{
-			XAxisType: "int32",
-			YAxisType: "int64",
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
 		}
 
-		ldd := &viewerdbpb.LineSeriesData{
-			Name: "10655's money",
+		w.Write(jsonBytes)
+	} else if token == "10657" {
+		vd, err := buildLine("10657")
+		if err != nil {
+			return
 		}
 
-		for i, v := range ubl.Arr {
-			ld.XAxisInt32 = append(ld.XAxisInt32, int32(i))
-			ldd.ValInt64 = append(ldd.ValInt64, v.Destmoney)
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
 		}
 
-		ld.Series = append(ld.Series, ldd)
-
-		vjd := &viewerdbpb.ViewerData_Line{
-			Line: ld,
+		w.Write(jsonBytes)
+	} else if token == "multiline" {
+		vd, err := buildMulti("multiline", []string{"10655", "10656", "10657"})
+		if err != nil {
+			return
 		}
 
-		vd := &viewerdbpb.ViewerData{
-			Type:  viewerdbpb.ViewerType_JSON,
-			Title: "10655's whackamole",
-			Token: "10655",
-			Data:  vjd,
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "lines" {
+		vd, err := buildLines("lines", []string{"10655", "10656", "10657"})
+		if err != nil {
+			return
 		}
 
 		jsonBytes, err := json.Marshal(vd)

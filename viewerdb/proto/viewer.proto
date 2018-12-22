@@ -9,6 +9,7 @@ enum ViewerType {
     GRAPH = 1;
     JSON = 2;
     LINE = 3;
+    MULTI = 4;
 }
 
 // GraphNode - Graph node
@@ -78,6 +79,13 @@ message LineData {
     repeated LineSeriesData series = 11;
 }
 
+// MultiData - Multi data
+//           - 多数据模式完整数据
+message MultiData {
+    // tokens
+    repeated string tokens = 1;
+}
+
 // ViewerData - viewer data
 //            - viewer数据
 message ViewerData {
@@ -95,5 +103,7 @@ message ViewerData {
         JSONData json = 1001;
         // line - valid only type is LINE
         LineData line = 1002;
+        // multi - valid only type is MULTI
+        MultiData multi = 1003;
     }
 }
