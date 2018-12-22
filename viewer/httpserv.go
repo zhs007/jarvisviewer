@@ -31,6 +31,16 @@ type NoteGraph struct {
 	Links []*NoteGraphLink
 }
 
+// DTUserBetListNode -
+type DTUserBetListNode struct {
+	Destmoney int64
+}
+
+// DTUserBetList -
+type DTUserBetList struct {
+	Arr []*DTUserBetListNode
+}
+
 // HTTPServer -
 type HTTPServer struct {
 	addr string
@@ -131,6 +141,57 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 			Type:  viewerdbpb.ViewerType_JSON,
 			Title: "知识库",
 			Token: "234567",
+			Data:  vjd,
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "10655" {
+		fi, err := os.Open("./test/10655_whackamole.json")
+		if err != nil {
+			return
+		}
+
+		defer fi.Close()
+		fd, err := ioutil.ReadAll(fi)
+		if err != nil {
+			return
+		}
+
+		ubl := &DTUserBetList{}
+		err = json.Unmarshal(fd, &ubl)
+		if err != nil {
+			return
+		}
+
+		ld := &viewerdbpb.LineData{
+			XAxisType: "int32",
+			YAxisType: "int64",
+		}
+
+		ldd := &viewerdbpb.LineSeriesData{
+			Name: "10655's money",
+		}
+
+		for i, v := range ubl.Arr {
+			ld.XAxisInt32 = append(ld.XAxisInt32, int32(i))
+			ldd.ValInt64 = append(ldd.ValInt64, v.Destmoney)
+		}
+
+		ld.Series = append(ld.Series, ldd)
+
+		vjd := &viewerdbpb.ViewerData_Line{
+			Line: ld,
+		}
+
+		vd := &viewerdbpb.ViewerData{
+			Type:  viewerdbpb.ViewerType_JSON,
+			Title: "10655's whackamole",
+			Token: "10655",
 			Data:  vjd,
 		}
 

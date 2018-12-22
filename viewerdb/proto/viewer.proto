@@ -55,7 +55,9 @@ message JSONData {
 //                - 折线图数据
 message LineSeriesData {
     string name = 1;
-    repeated int32 val = 2;
+    repeated string valString = 2;
+    repeated int32 valInt32 = 3;
+    repeated int64 valInt64 = 4;
 }
 
 // LineData - Line data
