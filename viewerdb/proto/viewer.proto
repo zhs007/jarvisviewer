@@ -10,6 +10,7 @@ enum ViewerType {
     JSON = 2;
     LINE = 3;
     MULTI = 4;
+    PIE = 5;
 }
 
 // GraphNode - Graph node
@@ -74,9 +75,9 @@ message LineData {
     repeated int64 xAxisInt64 = 4;    
 
     // yAxisType
-    string yAxisType = 10;
+    string yAxisType = 100;
     // xAxisData
-    repeated LineSeriesData series = 11;
+    repeated LineSeriesData series = 101;
 }
 
 // MultiData - Multi data
@@ -84,6 +85,26 @@ message LineData {
 message MultiData {
     // tokens
     repeated string tokens = 1;
+}
+
+// PieData - Pie data
+//         - 饼图完整数据
+message PieDataInfo {
+    // name
+    string name = 1;
+    // valInt32
+    int32 valInt32 = 2;
+    // valInt64
+    int64 valInt64 = 3;
+}
+
+// PieData - Pie data
+//         - 饼图完整数据
+message PieData {
+    // name
+    string name = 1;    
+    // tokens
+    repeated PieDataInfo data = 2;
 }
 
 // ViewerData - viewer data
@@ -105,5 +126,7 @@ message ViewerData {
         LineData line = 1002;
         // multi - valid only type is MULTI
         MultiData multi = 1003;
+        // pie - valid only type is PIE
+        PieData pie = 1004;
     }
 }

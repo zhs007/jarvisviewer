@@ -18,6 +18,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o jarvisviewer . \
     && mkdir /home/jarvisviewer/logs \
     && cp ./jarvisviewer /home/jarvisviewer/ \
     && cp -r test /home/jarvisviewer/test \
+    && cp -r www /home/jarvisviewer/www \
     && cp ./cfg/config.yaml.default /home/jarvisviewer/cfg/config.yaml
 
 FROM alpine

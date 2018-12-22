@@ -372,8 +372,8 @@ func (s *HTTPServer) start(ctx context.Context) error {
 		s.onViewerData(w, r)
 	})
 
-	// fsh := http.FileServer(http.Dir("./www/graphiql"))
-	// mux.Handle("/graphiql/", http.StripPrefix("/graphiql/", fsh))
+	fsh := http.FileServer(http.Dir("./www/static"))
+	mux.Handle("/viewer/", http.StripPrefix("/", fsh))
 
 	server := &http.Server{
 		Addr:         s.addr,
