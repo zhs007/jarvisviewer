@@ -373,7 +373,7 @@ func (s *HTTPServer) start(ctx context.Context) error {
 	})
 
 	fsh := http.FileServer(http.Dir("./www/static"))
-	mux.Handle("/viewer/", http.StripPrefix("/", fsh))
+	mux.Handle("/", http.StripPrefix("/", fsh))
 
 	server := &http.Server{
 		Addr:         s.addr,
