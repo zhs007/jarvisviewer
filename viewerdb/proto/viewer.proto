@@ -12,6 +12,7 @@ enum ViewerType {
     MULTI = 4;
     PIE = 5;
     SCATTER = 6;
+    BOXPLOT = 7;
 }
 
 // ValueType - Value type
@@ -140,6 +141,23 @@ message ScatterData {
     repeated ScatterNode data = 3;
 }
 
+// BoxplotNode - boxplot node
+//             - 散点图数据
+message BoxplotNode {
+    string Name = 1;
+    ValueType valType = 2;
+    repeated int32 arrInt32 = 3;
+    repeated int64 arrInt64 = 4;
+    repeated float arrFloat32 = 5;
+    repeated double arrFloat64 = 6;
+}
+
+// BoxplotData - boxplot data
+//             - 散点图数据
+message BoxplotData {
+    repeated BoxplotNode data = 1;
+}
+
 // ViewerData - viewer data
 //            - viewer数据
 message ViewerData {
@@ -163,5 +181,7 @@ message ViewerData {
         PieData pie = 1004;
         // scatter - valid only type is SCATTER
         ScatterData scatter = 1005;
+        // boxplot - valid only type is BOXPLOT
+        BoxplotData boxplot = 1006;
     }
 }

@@ -354,6 +354,82 @@ func buildScatter(fn string) (*viewerdbpb.ViewerData, error) {
 	return vd, nil
 }
 
+func buildBoxplotNode(fn string, basemoney int) (*viewerdbpb.BoxplotNode, error) {
+	fi, err := os.Open("./test/" + fn + ".json")
+	if err != nil {
+		return nil, err
+	}
+
+	defer fi.Close()
+	fd, err := ioutil.ReadAll(fi)
+	if err != nil {
+		return nil, err
+	}
+
+	up := &DTUserPie{}
+	err = json.Unmarshal(fd, &up)
+	if err != nil {
+		return nil, err
+	}
+
+	pd := &viewerdbpb.BoxplotNode{
+		Name:    fn,
+		ValType: viewerdbpb.ValueType_FLOAT32,
+	}
+
+	for _, v := range up.Arr {
+		bm := v.Destmoney
+		if bm < int32(200000-basemoney) {
+			bm = 0
+		} else {
+			bm = bm - int32(200000-basemoney)
+		}
+
+		bmf := float32(bm)
+
+		for i := 0; i < v.Nums; i++ {
+			pd.ArrFloat32 = append(pd.ArrFloat32, bmf)
+		}
+	}
+
+	return pd, nil
+
+	// vjd := &viewerdbpb.ViewerData_Scatter{
+	// 	Scatter: pd,
+	// }
+
+	// vd := &viewerdbpb.ViewerData{
+	// 	Type:  viewerdbpb.ViewerType_SCATTER,
+	// 	Title: fn + " scatter",
+	// 	Token: fn,
+	// 	Data:  vjd,
+	// }
+
+	// return vd, nil
+}
+
+func buildBoxplo(arrname []string, arrbm []int) (*viewerdbpb.ViewerData, error) {
+	pd := &viewerdbpb.BoxplotData{}
+
+	for i, n := range arrname {
+		bn, _ := buildBoxplotNode(n, arrbm[i])
+		pd.Data = append(pd.Data, bn)
+	}
+
+	vjd := &viewerdbpb.ViewerData_Boxplot{
+		Boxplot: pd,
+	}
+
+	vd := &viewerdbpb.ViewerData{
+		Type:  viewerdbpb.ViewerType_BOXPLOT,
+		Title: "user money boxplot",
+		Token: "usermoneyboxplot",
+		Data:  vjd,
+	}
+
+	return vd, nil
+}
+
 // func (s *HTTPServer) procGraphQL(w http.ResponseWriter, r *http.Request) []byte {
 // 	// ankadbname := r.Header.Get("Ankadbname")
 
@@ -513,6 +589,18 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 		w.Write(jsonBytes)
 	} else if token == "pie_100whackamole_scatter" {
 		vd, err := buildScatter("pie_100whackamole")
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "usermoneyboxplot" {
+		vd, err := buildBoxplo([]string{"pie_10whackamole", "pie_50whackamole", "pie_100whackamole"}, []int{350 * 10, 350 * 50, 350 * 100})
 		if err != nil {
 			return
 		}
