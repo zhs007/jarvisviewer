@@ -3,6 +3,7 @@ package viewer
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -39,6 +40,17 @@ type DTUserBetListNode struct {
 // DTUserBetList -
 type DTUserBetList struct {
 	Arr []*DTUserBetListNode
+}
+
+// DTUserPieNode -
+type DTUserPieNode struct {
+	Destmoney int32
+	Nums      int
+}
+
+// DTUserPie -
+type DTUserPie struct {
+	Arr []*DTUserPieNode
 }
 
 // HTTPServer -
@@ -170,9 +182,52 @@ func buildLine(userid string) (*viewerdbpb.ViewerData, error) {
 	}
 
 	vd := &viewerdbpb.ViewerData{
-		Type:  viewerdbpb.ViewerType_JSON,
+		Type:  viewerdbpb.ViewerType_LINE,
 		Title: userid + "'s whackamole",
 		Token: userid,
+		Data:  vjd,
+	}
+
+	return vd, nil
+}
+
+func buildPie(fn string) (*viewerdbpb.ViewerData, error) {
+	fi, err := os.Open("./test/" + fn + ".json")
+	if err != nil {
+		return nil, err
+	}
+
+	defer fi.Close()
+	fd, err := ioutil.ReadAll(fi)
+	if err != nil {
+		return nil, err
+	}
+
+	up := &DTUserPie{}
+	err = json.Unmarshal(fd, &up)
+	if err != nil {
+		return nil, err
+	}
+
+	pd := &viewerdbpb.PieData{
+		Name: "user money range",
+	}
+
+	for _, v := range up.Arr {
+		pd.Data = append(pd.Data, &viewerdbpb.PieDataInfo{
+			Name:     fmt.Sprintf("user money %v", v.Destmoney),
+			ValInt32: int32(v.Nums),
+		})
+	}
+
+	vjd := &viewerdbpb.ViewerData_Pie{
+		Pie: pd,
+	}
+
+	vd := &viewerdbpb.ViewerData{
+		Type:  viewerdbpb.ViewerType_PIE,
+		Title: fn,
+		Token: fn,
 		Data:  vjd,
 	}
 
@@ -246,7 +301,7 @@ func buildLines(mytoken string, tokens []string) (*viewerdbpb.ViewerData, error)
 	}
 
 	vd := &viewerdbpb.ViewerData{
-		Type:  viewerdbpb.ViewerType_JSON,
+		Type:  viewerdbpb.ViewerType_LINE,
 		Title: "some user's whackamole",
 		Token: mytoken,
 		Data:  vjd,
@@ -342,6 +397,42 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 		w.Write(jsonBytes)
 	} else if token == "lines" {
 		vd, err := buildLines("lines", []string{"10655", "10656", "10657"})
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_10whackamole" {
+		vd, err := buildPie("pie_10whackamole")
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_50whackamole" {
+		vd, err := buildPie("pie_50whackamole")
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_100whackamole" {
+		vd, err := buildPie("pie_100whackamole")
 		if err != nil {
 			return
 		}
