@@ -310,6 +310,50 @@ func buildLines(mytoken string, tokens []string) (*viewerdbpb.ViewerData, error)
 	return vd, nil
 }
 
+func buildScatter(fn string) (*viewerdbpb.ViewerData, error) {
+	fi, err := os.Open("./test/" + fn + ".json")
+	if err != nil {
+		return nil, err
+	}
+
+	defer fi.Close()
+	fd, err := ioutil.ReadAll(fi)
+	if err != nil {
+		return nil, err
+	}
+
+	up := &DTUserPie{}
+	err = json.Unmarshal(fd, &up)
+	if err != nil {
+		return nil, err
+	}
+
+	pd := &viewerdbpb.ScatterData{
+		XType: viewerdbpb.ValueType_INT32,
+		YType: viewerdbpb.ValueType_INT32,
+	}
+
+	for _, v := range up.Arr {
+		pd.Data = append(pd.Data, &viewerdbpb.ScatterNode{
+			XInt32: v.Destmoney,
+			YInt32: int32(v.Nums),
+		})
+	}
+
+	vjd := &viewerdbpb.ViewerData_Scatter{
+		Scatter: pd,
+	}
+
+	vd := &viewerdbpb.ViewerData{
+		Type:  viewerdbpb.ViewerType_SCATTER,
+		Title: fn + " scatter",
+		Token: fn,
+		Data:  vjd,
+	}
+
+	return vd, nil
+}
+
 // func (s *HTTPServer) procGraphQL(w http.ResponseWriter, r *http.Request) []byte {
 // 	// ankadbname := r.Header.Get("Ankadbname")
 
@@ -433,6 +477,42 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 		w.Write(jsonBytes)
 	} else if token == "pie_100whackamole" {
 		vd, err := buildPie("pie_100whackamole")
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_10whackamole_scatter" {
+		vd, err := buildScatter("pie_10whackamole")
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_50whackamole_scatter" {
+		vd, err := buildScatter("pie_50whackamole")
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_100whackamole_scatter" {
+		vd, err := buildScatter("pie_100whackamole")
 		if err != nil {
 			return
 		}
