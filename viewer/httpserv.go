@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"sort"
 	"time"
 
 	"github.com/zhs007/jarvisviewer/viewerdb/proto"
@@ -237,6 +238,14 @@ func buildPie(fn string, off int) (*viewerdbpb.ViewerData, error) {
 			ValInt32: int32(v.Nums),
 		})
 	}
+
+	sort.Slice(pd.Data, func(i, j int) bool {
+		if pd.Data[i].ValInt32 < pd.Data[j].ValInt32 {
+			return true
+		}
+
+		return false
+	})
 
 	vjd := &viewerdbpb.ViewerData_Pie{
 		Pie: pd,
