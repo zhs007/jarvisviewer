@@ -341,6 +341,11 @@ func buildScatter(fn string, off int) (*viewerdbpb.ViewerData, error) {
 			})
 		} else if v.Destmoney > pd.Data[len(pd.Data)-1].XInt32-int32(off) && v.Destmoney < pd.Data[len(pd.Data)-1].XInt32+int32(off) {
 			pd.Data[len(pd.Data)-1].YInt32 = pd.Data[len(pd.Data)-1].YInt32 + int32(v.Nums)
+		} else {
+			pd.Data = append(pd.Data, &viewerdbpb.ScatterNode{
+				XInt32: v.Destmoney,
+				YInt32: int32(v.Nums),
+			})
 		}
 	}
 
