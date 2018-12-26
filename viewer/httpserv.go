@@ -310,7 +310,7 @@ func buildLines(mytoken string, tokens []string) (*viewerdbpb.ViewerData, error)
 	return vd, nil
 }
 
-func buildScatter(fn string) (*viewerdbpb.ViewerData, error) {
+func buildScatter(fn string, off int) (*viewerdbpb.ViewerData, error) {
 	fi, err := os.Open("./test/" + fn + ".json")
 	if err != nil {
 		return nil, err
@@ -334,10 +334,14 @@ func buildScatter(fn string) (*viewerdbpb.ViewerData, error) {
 	}
 
 	for _, v := range up.Arr {
-		pd.Data = append(pd.Data, &viewerdbpb.ScatterNode{
-			XInt32: v.Destmoney,
-			YInt32: int32(v.Nums),
-		})
+		if len(pd.Data) == 0 {
+			pd.Data = append(pd.Data, &viewerdbpb.ScatterNode{
+				XInt32: v.Destmoney,
+				YInt32: int32(v.Nums),
+			})
+		} else if v.Destmoney > pd.Data[len(pd.Data)-1].XInt32-int32(off) && v.Destmoney < pd.Data[len(pd.Data)-1].XInt32+int32(off) {
+			pd.Data[len(pd.Data)-1].YInt32 = pd.Data[len(pd.Data)-1].YInt32 + int32(v.Nums)
+		}
 	}
 
 	vjd := &viewerdbpb.ViewerData_Scatter{
@@ -564,7 +568,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_10whackamole_scatter" {
-		vd, err := buildScatter("pie_10whackamole")
+		vd, err := buildScatter("pie_10whackamole", 200)
 		if err != nil {
 			return
 		}
@@ -576,7 +580,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_50whackamole_scatter" {
-		vd, err := buildScatter("pie_50whackamole")
+		vd, err := buildScatter("pie_50whackamole", 200)
 		if err != nil {
 			return
 		}
@@ -588,7 +592,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_100whackamole_scatter" {
-		vd, err := buildScatter("pie_100whackamole")
+		vd, err := buildScatter("pie_100whackamole", 200)
 		if err != nil {
 			return
 		}
