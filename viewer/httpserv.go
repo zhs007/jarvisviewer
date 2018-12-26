@@ -232,20 +232,25 @@ func buildPie(fn string, off int) (*viewerdbpb.ViewerData, error) {
 		insMapPieNode(mapnums, v, int32(off))
 	}
 
+	var arrnums []*DTUserPieNode
 	for _, v := range mapnums {
-		pd.Data = append(pd.Data, &viewerdbpb.PieDataInfo{
-			Name:     fmt.Sprintf("user money %v", v.Destmoney),
-			ValInt32: int32(v.Nums),
-		})
+		arrnums = append(arrnums, v)
 	}
 
-	sort.Slice(pd.Data, func(i, j int) bool {
-		if pd.Data[i].ValInt32 < pd.Data[j].ValInt32 {
+	sort.Slice(arrnums, func(i, j int) bool {
+		if arrnums[i].Destmoney < arrnums[j].Destmoney {
 			return true
 		}
 
 		return false
 	})
+
+	for _, v := range arrnums {
+		pd.Data = append(pd.Data, &viewerdbpb.PieDataInfo{
+			Name:     fmt.Sprintf("user money %v", v.Destmoney),
+			ValInt32: int32(v.Nums),
+		})
+	}
 
 	vjd := &viewerdbpb.ViewerData_Pie{
 		Pie: pd,
