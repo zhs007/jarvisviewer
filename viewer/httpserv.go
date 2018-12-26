@@ -191,7 +191,19 @@ func buildLine(userid string) (*viewerdbpb.ViewerData, error) {
 	return vd, nil
 }
 
-func buildPie(fn string) (*viewerdbpb.ViewerData, error) {
+func insMapPieNode(mappn map[int32]*DTUserPieNode, n *DTUserPieNode, off int32) {
+	for k, v := range mappn {
+		if n.Destmoney > k-off && n.Destmoney < k+off {
+			v.Nums = v.Nums + n.Nums
+
+			return
+		}
+	}
+
+	mappn[n.Destmoney] = n
+}
+
+func buildPie(fn string, off int) (*viewerdbpb.ViewerData, error) {
 	fi, err := os.Open("./test/" + fn + ".json")
 	if err != nil {
 		return nil, err
@@ -213,7 +225,13 @@ func buildPie(fn string) (*viewerdbpb.ViewerData, error) {
 		Name: "user money range",
 	}
 
+	mapnums := make(map[int32]*DTUserPieNode)
+
 	for _, v := range up.Arr {
+		insMapPieNode(mapnums, v, int32(off))
+	}
+
+	for _, v := range mapnums {
 		pd.Data = append(pd.Data, &viewerdbpb.PieDataInfo{
 			Name:     fmt.Sprintf("user money %v", v.Destmoney),
 			ValInt32: int32(v.Nums),
@@ -537,7 +555,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_10whackamole" {
-		vd, err := buildPie("pie_10whackamole")
+		vd, err := buildPie("pie_10whackamole", 20000)
 		if err != nil {
 			return
 		}
@@ -549,7 +567,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_50whackamole" {
-		vd, err := buildPie("pie_50whackamole")
+		vd, err := buildPie("pie_50whackamole", 20000)
 		if err != nil {
 			return
 		}
@@ -561,7 +579,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_100whackamole" {
-		vd, err := buildPie("pie_100whackamole")
+		vd, err := buildPie("pie_100whackamole", 20000)
 		if err != nil {
 			return
 		}
