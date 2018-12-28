@@ -60,6 +60,113 @@ type HTTPServer struct {
 	serv *http.Server
 }
 
+func buildDTGame6lovefighters() (*viewerdbpb.ViewerData, error) {
+	row0 := &viewerdbpb.DTGame6List{
+		Arr: []int32{7, 2, 6},
+	}
+
+	row1 := &viewerdbpb.DTGame6List{
+		Arr: []int32{3, 7, 0, 5},
+	}
+
+	row2 := &viewerdbpb.DTGame6List{
+		Arr: []int32{3, 6, 2, 2},
+	}
+
+	row3 := &viewerdbpb.DTGame6List{
+		Arr: []int32{7, 3, 8, 2, 3},
+	}
+
+	row4 := &viewerdbpb.DTGame6List{
+		Arr: []int32{3, 2, 7, 1, 5},
+	}
+
+	dtgame6 := &viewerdbpb.DTGame6Data{
+		GameCode:   "lovefighters",
+		GameModule: "basegame",
+		ArrType:    viewerdbpb.DTGame6ArrayType_COLUMN,
+		Arr:        []*viewerdbpb.DTGame6List{row0, row1, row2, row3, row4},
+		Bet:        100,
+		RealBet:    2500,
+		Win:        1000,
+		RealWin:    1200,
+	}
+
+	rs0 := &viewerdbpb.DTGame6Result{
+		Type:       "line",
+		Bet:        100,
+		RealBet:    2500,
+		BaseMul:    10,
+		Win:        1000,
+		RealWin:    1200,
+		BonusPrize: 200,
+		OtherMul:   0,
+		Pos: []*viewerdbpb.DTGame6Pos{
+			&viewerdbpb.DTGame6Pos{
+				X: 0,
+				Y: 1,
+			},
+			&viewerdbpb.DTGame6Pos{
+				X: 1,
+				Y: 2,
+			},
+			&viewerdbpb.DTGame6Pos{
+				X: 2,
+				Y: 2,
+			},
+			&viewerdbpb.DTGame6Pos{
+				X: 3,
+				Y: 3,
+			},
+		},
+	}
+
+	rs1 := &viewerdbpb.DTGame6Result{
+		Type:       "scatter",
+		Bet:        100,
+		RealBet:    2500,
+		BaseMul:    10,
+		Win:        1000,
+		RealWin:    1200,
+		BonusPrize: 200,
+		OtherMul:   0,
+		Pos: []*viewerdbpb.DTGame6Pos{
+			&viewerdbpb.DTGame6Pos{
+				X: 0,
+				Y: 1,
+			},
+			&viewerdbpb.DTGame6Pos{
+				X: 1,
+				Y: 2,
+			},
+			&viewerdbpb.DTGame6Pos{
+				X: 2,
+				Y: 3,
+			},
+			&viewerdbpb.DTGame6Pos{
+				X: 3,
+				Y: 3,
+			},
+		},
+	}
+
+	dtgame6.Results = append(dtgame6.Results, rs0)
+	dtgame6.Results = append(dtgame6.Results, rs1)
+
+	dtgi := &viewerdbpb.ViewerData_Dtgame6{
+		Dtgame6: dtgame6,
+	}
+
+	vd := &viewerdbpb.ViewerData{
+		Type:  viewerdbpb.ViewerType_DTGAME6,
+		Title: "lovefighters game result",
+		Token: "lovefighters001",
+		Data:  dtgi,
+	}
+
+	return vd, nil
+}
+
 func buildDTGame6(gamecode string) (*viewerdbpb.ViewerData, error) {
 	row0 := &viewerdbpb.DTGame6List{
 		Arr: []int32{8, 2, 3, 8, 7},
@@ -745,6 +852,18 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 		w.Write(jsonBytes)
 	} else if token == "clash001" {
 		vd, err := buildDTGame6("clash")
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "lovefighters001" {
+		vd, err := buildDTGame6lovefighters()
 		if err != nil {
 			return
 		}
