@@ -142,7 +142,7 @@ func buildDTGame6(gamecode string) (*viewerdbpb.ViewerData, error) {
 	}
 
 	vd := &viewerdbpb.ViewerData{
-		Type:  viewerdbpb.ViewerType_GRAPH,
+		Type:  viewerdbpb.ViewerType_DTGAME6,
 		Title: "clash game result",
 		Token: "clash001",
 		Data:  dtgi,
