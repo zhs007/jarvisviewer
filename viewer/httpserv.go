@@ -60,6 +60,97 @@ type HTTPServer struct {
 	serv *http.Server
 }
 
+func buildDTGame6(gamecode string) (*viewerdbpb.ViewerData, error) {
+	row0 := &viewerdbpb.DTGame6List{
+		Arr: []int32{8, 2, 3, 8, 7},
+	}
+
+	row1 := &viewerdbpb.DTGame6List{
+		Arr: []int32{10, 10, 8, 1, 3},
+	}
+
+	row2 := &viewerdbpb.DTGame6List{
+		Arr: []int32{10, 5, 6, 1, 6},
+	}
+
+	dtgame6 := &viewerdbpb.DTGame6Data{
+		GameCode:   gamecode,
+		GameModule: "basegame",
+		ArrType:    viewerdbpb.DTGame6ArrayType_ROW,
+		Arr:        []*viewerdbpb.DTGame6List{row0, row1, row2},
+		Bet:        100,
+		RealBet:    2500,
+		Win:        1000,
+		RealWin:    1200,
+	}
+
+	rs0 := &viewerdbpb.DTGame6Result{
+		Type:       "line",
+		Bet:        100,
+		RealBet:    2500,
+		BaseMul:    10,
+		Win:        1000,
+		RealWin:    1200,
+		BonusPrize: 200,
+		OtherMul:   0,
+		Pos: []*viewerdbpb.DTGame6Pos{
+			&viewerdbpb.DTGame6Pos{
+				X: 0,
+				Y: 1,
+			},
+			&viewerdbpb.DTGame6Pos{
+				X: 1,
+				Y: 2,
+			},
+			&viewerdbpb.DTGame6Pos{
+				X: 2,
+				Y: 0,
+			},
+		},
+	}
+
+	rs1 := &viewerdbpb.DTGame6Result{
+		Type:       "scatter",
+		Bet:        100,
+		RealBet:    2500,
+		BaseMul:    10,
+		Win:        1000,
+		RealWin:    1200,
+		BonusPrize: 200,
+		OtherMul:   0,
+		Pos: []*viewerdbpb.DTGame6Pos{
+			&viewerdbpb.DTGame6Pos{
+				X: 0,
+				Y: 2,
+			},
+			&viewerdbpb.DTGame6Pos{
+				X: 2,
+				Y: 0,
+			},
+			&viewerdbpb.DTGame6Pos{
+				X: 4,
+				Y: 0,
+			},
+		},
+	}
+
+	dtgame6.Results = append(dtgame6.Results, rs0)
+	dtgame6.Results = append(dtgame6.Results, rs1)
+
+	dtgi := &viewerdbpb.ViewerData_Dtgame6{
+		Dtgame6: dtgame6,
+	}
+
+	vd := &viewerdbpb.ViewerData{
+		Type:  viewerdbpb.ViewerType_GRAPH,
+		Title: "clash game result",
+		Token: "clash001",
+		Data:  dtgi,
+	}
+
+	return vd, nil
+}
+
 func buildGraph(fn string) (*viewerdbpb.ViewerData, error) {
 	fi, err := os.Open(fn)
 	if err != nil {
@@ -642,6 +733,18 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 		w.Write(jsonBytes)
 	} else if token == "usermoneyboxplot" {
 		vd, err := buildBoxplo([]string{"pie_10whackamole", "pie_50whackamole", "pie_100whackamole"}, []int{350 * 10, 350 * 50, 350 * 100})
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "clash001" {
+		vd, err := buildDTGame6("clash")
 		if err != nil {
 			return
 		}

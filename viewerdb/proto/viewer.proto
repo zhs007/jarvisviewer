@@ -13,6 +13,7 @@ enum ViewerType {
     PIE = 5;
     SCATTER = 6;
     BOXPLOT = 7;
+    DTGAME6 = 8;
 }
 
 // ValueType - Value type
@@ -23,6 +24,15 @@ enum ValueType {
     INT64 = 2;
     FLOAT32 = 3;
     FLOAT64 = 4;
+}
+
+// DTGame6ArrayType - Array Type
+//                  - 数据类型
+enum DTGame6ArrayType {
+    // 行优先
+    ROW = 0;
+    // 列优先
+    COLUMN = 1;
 }
 
 // GraphNode - Graph node
@@ -158,6 +168,51 @@ message BoxplotData {
     repeated BoxplotNode data = 1;
 }
 
+// DTGame6List - dtgame6 list
+//             - dtgame6
+message DTGame6List {
+    repeated int32 arr = 1;
+}
+
+// DTGame6Pos - dtgame6 pos
+//            - dtgame6
+message DTGame6Pos {
+    int32 x = 1;
+    int32 y = 2;
+}
+
+// DTGame6Result - dtgame6 game result
+//               - dtgame6
+message DTGame6Result {
+    string type = 1;
+    int32 bet = 2;
+    int32 realBet = 3;
+    int32 baseMul = 4;
+    int32 win = 5;
+    int32 realWin = 6;
+    int32 bonusPrize = 7;
+    int32 otherMul = 8;
+
+    repeated DTGame6Pos pos = 100;
+}
+
+// DTGame6Data - dtgame6 data
+//             - dtgame6
+message DTGame6Data {
+    string gameCode = 1;
+    string gameModule = 2;
+    repeated string listParent = 3;
+
+    DTGame6ArrayType arrType = 100;
+    repeated DTGame6List arr = 101;
+
+    int32 bet = 200;
+    int32 realBet = 201;
+    int32 win = 202;
+    int32 realWin = 203;    
+    repeated DTGame6Result results = 204;
+}
+
 // ViewerData - viewer data
 //            - viewer数据
 message ViewerData {
@@ -183,5 +238,7 @@ message ViewerData {
         ScatterData scatter = 1005;
         // boxplot - valid only type is BOXPLOT
         BoxplotData boxplot = 1006;
+        // dtgame6 - valid only type is DTGAME6
+        DTGame6Data dtgame6 = 1007;
     }
 }
