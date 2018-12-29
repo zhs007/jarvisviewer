@@ -814,6 +814,42 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 		}
 
 		w.Write(jsonBytes)
+	} else if token == "pie_20whackamole_scatter" {
+		vd, err := buildScatter("pie_20whackamole", 30)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_30whackamole_scatter" {
+		vd, err := buildScatter("pie_30whackamole", 30)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_40whackamole_scatter" {
+		vd, err := buildScatter("pie_40whackamole", 30)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
 	} else if token == "pie_50whackamole_scatter" {
 		vd, err := buildScatter("pie_50whackamole", 30)
 		if err != nil {
@@ -826,8 +862,80 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 		}
 
 		w.Write(jsonBytes)
+	} else if token == "pie_60whackamole_scatter" {
+		vd, err := buildScatter("pie_60whackamole", 30)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_70whackamole_scatter" {
+		vd, err := buildScatter("pie_70whackamole", 30)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_80whackamole_scatter" {
+		vd, err := buildScatter("pie_80whackamole", 30)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_90whackamole_scatter" {
+		vd, err := buildScatter("pie_90whackamole", 30)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
 	} else if token == "pie_100whackamole_scatter" {
 		vd, err := buildScatter("pie_100whackamole", 30)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_150whackamole_scatter" {
+		vd, err := buildScatter("pie_150whackamole", 30)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_200whackamole_scatter" {
+		vd, err := buildScatter("pie_200whackamole", 30)
 		if err != nil {
 			return
 		}
@@ -864,6 +972,20 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 		w.Write(jsonBytes)
 	} else if token == "lovefighters001" {
 		vd, err := buildDTGame6lovefighters()
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "multiline2" {
+		vd, err := buildMulti("multiline2", []string{"pie_10whackamole", "pie_20whackamole", "pie_30whackamole",
+			"pie_40whackamole", "pie_50whackamole", "pie_60whackamole", "pie_70whackamole", "pie_80whackamole", "pie_90whackamole",
+			"pie_100whackamole", "pie_150whackamole", "pie_200whackamole"})
 		if err != nil {
 			return
 		}
