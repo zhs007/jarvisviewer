@@ -391,15 +391,16 @@ func buildLine(userid string) (*viewerdbpb.ViewerData, error) {
 }
 
 func insMapPieNode(mappn map[int32]*DTUserPieNode, n *DTUserPieNode, off int32) {
+	dm := n.Destmoney - n.Destmoney%off
 	for k, v := range mappn {
-		if n.Destmoney > k-off && n.Destmoney < k+off {
+		if n.Destmoney >= k && n.Destmoney < k+off {
 			v.Nums = v.Nums + n.Nums
 
 			return
 		}
 	}
 
-	mappn[n.Destmoney] = n
+	mappn[dm] = n
 }
 
 func buildPie(fn string, off int) (*viewerdbpb.ViewerData, error) {
@@ -923,7 +924,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_20whackamole_scatter" {
-		vd, err := buildScatter("pie_20whackamole", 30)
+		vd, err := buildScatter("pie_20whackamole", 100)
 		if err != nil {
 			return
 		}
@@ -935,7 +936,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_30whackamole_scatter" {
-		vd, err := buildScatter("pie_30whackamole", 30)
+		vd, err := buildScatter("pie_30whackamole", 100)
 		if err != nil {
 			return
 		}
@@ -947,7 +948,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_40whackamole_scatter" {
-		vd, err := buildScatter("pie_40whackamole", 30)
+		vd, err := buildScatter("pie_40whackamole", 100)
 		if err != nil {
 			return
 		}
@@ -959,7 +960,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_50whackamole_scatter" {
-		vd, err := buildScatter("pie_50whackamole", 30)
+		vd, err := buildScatter("pie_50whackamole", 100)
 		if err != nil {
 			return
 		}
@@ -971,7 +972,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_60whackamole_scatter" {
-		vd, err := buildScatter("pie_60whackamole", 30)
+		vd, err := buildScatter("pie_60whackamole", 100)
 		if err != nil {
 			return
 		}
@@ -983,7 +984,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_70whackamole_scatter" {
-		vd, err := buildScatter("pie_70whackamole", 30)
+		vd, err := buildScatter("pie_70whackamole", 100)
 		if err != nil {
 			return
 		}
@@ -995,7 +996,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_80whackamole_scatter" {
-		vd, err := buildScatter("pie_80whackamole", 30)
+		vd, err := buildScatter("pie_80whackamole", 100)
 		if err != nil {
 			return
 		}
@@ -1007,7 +1008,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_90whackamole_scatter" {
-		vd, err := buildScatter("pie_90whackamole", 30)
+		vd, err := buildScatter("pie_90whackamole", 100)
 		if err != nil {
 			return
 		}
@@ -1019,7 +1020,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_100whackamole_scatter" {
-		vd, err := buildScatter("pie_100whackamole", 30)
+		vd, err := buildScatter("pie_100whackamole", 100)
 		if err != nil {
 			return
 		}
@@ -1031,7 +1032,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_150whackamole_scatter" {
-		vd, err := buildScatter("pie_150whackamole", 30)
+		vd, err := buildScatter("pie_150whackamole", 100)
 		if err != nil {
 			return
 		}
@@ -1043,7 +1044,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_200whackamole_scatter" {
-		vd, err := buildScatter("pie_200whackamole", 30)
+		vd, err := buildScatter("pie_200whackamole", 100)
 		if err != nil {
 			return
 		}
