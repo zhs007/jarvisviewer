@@ -983,9 +983,9 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "multiline2" {
-		vd, err := buildMulti("multiline2", []string{"pie_10whackamole", "pie_20whackamole", "pie_30whackamole",
-			"pie_40whackamole", "pie_50whackamole", "pie_60whackamole", "pie_70whackamole", "pie_80whackamole", "pie_90whackamole",
-			"pie_100whackamole", "pie_150whackamole", "pie_200whackamole"})
+		vd, err := buildMulti("multiline2", []string{"pie_10whackamole_scatter", "pie_20whackamole_scatter", "pie_30whackamole_scatter",
+			"pie_40whackamole_scatter", "pie_50whackamole_scatter", "pie_60whackamole_scatter", "pie_70whackamole_scatter", "pie_80whackamole_scatter", "pie_90whackamole_scatter",
+			"pie_100whackamole_scatter", "pie_150whackamole_scatter", "pie_200whackamole_scatter"})
 		if err != nil {
 			return
 		}
