@@ -1119,6 +1119,322 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 		}
 
 		w.Write(jsonBytes)
+	} else if token == "pie_10magician" {
+		vd, err := buildPie("pie_10magician", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_20magician" {
+		vd, err := buildPie("pie_20magician", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_30magician" {
+		vd, err := buildPie("pie_30magician", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_40magician" {
+		vd, err := buildPie("pie_40magician", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_50magician" {
+		vd, err := buildPie("pie_50magician", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_60magician" {
+		vd, err := buildPie("pie_60magician", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_70magician" {
+		vd, err := buildPie("pie_70magician", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_80magician" {
+		vd, err := buildPie("pie_80magician", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_90magician" {
+		vd, err := buildPie("pie_90magician", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_100magician" {
+		vd, err := buildPie("pie_100magician", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_150magician" {
+		vd, err := buildPie("pie_150magician", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_200magician" {
+		vd, err := buildPie("pie_200magician", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_10magician_scatter" {
+		vd, err := buildScatter("pie_10magician", 30)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_20magician_scatter" {
+		vd, err := buildScatter("pie_20magician", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_30magician_scatter" {
+		vd, err := buildScatter("pie_30magician", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_40magician_scatter" {
+		vd, err := buildScatter("pie_40magician", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_50magician_scatter" {
+		vd, err := buildScatter("pie_50magician", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_60magician_scatter" {
+		vd, err := buildScatter("pie_60magician", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_70magician_scatter" {
+		vd, err := buildScatter("pie_70magician", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_80magician_scatter" {
+		vd, err := buildScatter("pie_80magician", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_90magician_scatter" {
+		vd, err := buildScatter("pie_90magician", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_100magician_scatter" {
+		vd, err := buildScatter("pie_100magician", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_150magician_scatter" {
+		vd, err := buildScatter("pie_150magician", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_200magician_scatter" {
+		vd, err := buildScatter("pie_200magician", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "multiline5" {
+		vd, err := buildMulti("multiline5", []string{"pie_10magician_scatter", "pie_20magician_scatter", "pie_30magician_scatter",
+			"pie_40magician_scatter", "pie_50magician_scatter", "pie_60magician_scatter", "pie_70magician_scatter", "pie_80magician_scatter", "pie_90magician_scatter",
+			"pie_100magician_scatter", "pie_150magician_scatter", "pie_200magician_scatter"})
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "multiline6" {
+		vd, err := buildMulti("multiline6", []string{"pie_10magician", "pie_20magician", "pie_30magician",
+			"pie_40magician", "pie_50magician", "pie_60magician", "pie_70magician", "pie_80magician", "pie_90magician",
+			"pie_100magician", "pie_150magician", "pie_200magician"})
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
 	}
 }
 
