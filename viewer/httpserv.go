@@ -564,20 +564,31 @@ func buildScatter(fn string, off int) (*viewerdbpb.ViewerData, error) {
 		YType: viewerdbpb.ValueType_INT32,
 	}
 
+	mapnums := make(map[int32]*DTUserPieNode)
+
 	for _, v := range up.Arr {
-		if len(pd.Data) == 0 {
-			pd.Data = append(pd.Data, &viewerdbpb.ScatterNode{
-				XInt32: v.Destmoney,
-				YInt32: int32(v.Nums),
-			})
-		} else if v.Destmoney > pd.Data[len(pd.Data)-1].XInt32-int32(off) && v.Destmoney < pd.Data[len(pd.Data)-1].XInt32+int32(off) {
-			pd.Data[len(pd.Data)-1].YInt32 = pd.Data[len(pd.Data)-1].YInt32 + int32(v.Nums)
-		} else {
-			pd.Data = append(pd.Data, &viewerdbpb.ScatterNode{
-				XInt32: v.Destmoney,
-				YInt32: int32(v.Nums),
-			})
-		}
+		insMapPieNode(mapnums, v, int32(off))
+	}
+
+	for _, v := range mapnums {
+		pd.Data = append(pd.Data, &viewerdbpb.ScatterNode{
+			XInt32: v.Destmoney,
+			YInt32: int32(v.Nums),
+		})
+		// dm := v.Destmoney - v.Destmoney%int32(off)
+		// if len(pd.Data) == 0 {
+		// 	pd.Data = append(pd.Data, &viewerdbpb.ScatterNode{
+		// 		XInt32: dm,
+		// 		YInt32: int32(v.Nums),
+		// 	})
+		// } else if v.Destmoney >= dm && v.Destmoney < dm+int32(off) {
+		// 	pd.Data[len(pd.Data)-1].YInt32 = pd.Data[len(pd.Data)-1].YInt32 + int32(v.Nums)
+		// } else {
+		// 	pd.Data = append(pd.Data, &viewerdbpb.ScatterNode{
+		// 		XInt32: v.Destmoney,
+		// 		YInt32: int32(v.Nums),
+		// 	})
+		// }
 	}
 
 	vjd := &viewerdbpb.ViewerData_Scatter{
@@ -912,7 +923,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_10whackamole_scatter" {
-		vd, err := buildScatter("pie_10whackamole", 30)
+		vd, err := buildScatter("pie_10whackamole", 100)
 		if err != nil {
 			return
 		}
@@ -1264,7 +1275,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_10magician_scatter" {
-		vd, err := buildScatter("pie_10magician", 30)
+		vd, err := buildScatter("pie_10magician", 100)
 		if err != nil {
 			return
 		}
