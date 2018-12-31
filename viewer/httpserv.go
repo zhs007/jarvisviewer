@@ -1446,6 +1446,322 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 		}
 
 		w.Write(jsonBytes)
+	} else if token == "pie_10dragonball" {
+		vd, err := buildPie("pie_10dragonball", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_20dragonball" {
+		vd, err := buildPie("pie_20dragonball", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_30dragonball" {
+		vd, err := buildPie("pie_30dragonball", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_40dragonball" {
+		vd, err := buildPie("pie_40dragonball", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_50dragonball" {
+		vd, err := buildPie("pie_50dragonball", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_60dragonball" {
+		vd, err := buildPie("pie_60dragonball", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_70dragonball" {
+		vd, err := buildPie("pie_70dragonball", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_80dragonball" {
+		vd, err := buildPie("pie_80dragonball", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_90dragonball" {
+		vd, err := buildPie("pie_90dragonball", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_100dragonball" {
+		vd, err := buildPie("pie_100dragonball", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_150dragonball" {
+		vd, err := buildPie("pie_150dragonball", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_200dragonball" {
+		vd, err := buildPie("pie_200dragonball", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_10dragonball_scatter" {
+		vd, err := buildScatter("pie_10dragonball", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_20dragonball_scatter" {
+		vd, err := buildScatter("pie_20dragonball", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_30dragonball_scatter" {
+		vd, err := buildScatter("pie_30dragonball", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_40dragonball_scatter" {
+		vd, err := buildScatter("pie_40dragonball", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_50dragonball_scatter" {
+		vd, err := buildScatter("pie_50dragonball", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_60dragonball_scatter" {
+		vd, err := buildScatter("pie_60dragonball", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_70dragonball_scatter" {
+		vd, err := buildScatter("pie_70dragonball", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_80dragonball_scatter" {
+		vd, err := buildScatter("pie_80dragonball", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_90dragonball_scatter" {
+		vd, err := buildScatter("pie_90dragonball", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_100dragonball_scatter" {
+		vd, err := buildScatter("pie_100dragonball", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_150dragonball_scatter" {
+		vd, err := buildScatter("pie_150dragonball", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_200dragonball_scatter" {
+		vd, err := buildScatter("pie_200dragonball", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "multiline5" {
+		vd, err := buildMulti("multiline5", []string{"pie_10dragonball_scatter", "pie_20dragonball_scatter", "pie_30dragonball_scatter",
+			"pie_40dragonball_scatter", "pie_50dragonball_scatter", "pie_60dragonball_scatter", "pie_70dragonball_scatter", "pie_80dragonball_scatter", "pie_90dragonball_scatter",
+			"pie_100dragonball_scatter", "pie_150dragonball_scatter", "pie_200dragonball_scatter"})
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "multiline6" {
+		vd, err := buildMulti("multiline6", []string{"pie_10dragonball", "pie_20dragonball", "pie_30dragonball",
+			"pie_40dragonball", "pie_50dragonball", "pie_60dragonball", "pie_70dragonball", "pie_80dragonball", "pie_90dragonball",
+			"pie_100dragonball", "pie_150dragonball", "pie_200dragonball"})
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
 	}
 }
 
