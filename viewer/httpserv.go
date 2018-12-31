@@ -1734,8 +1734,8 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 		}
 
 		w.Write(jsonBytes)
-	} else if token == "multiline5" {
-		vd, err := buildMulti("multiline5", []string{"pie_10dragonball_scatter", "pie_20dragonball_scatter", "pie_30dragonball_scatter",
+	} else if token == "multiline7" {
+		vd, err := buildMulti("multiline7", []string{"pie_10dragonball_scatter", "pie_20dragonball_scatter", "pie_30dragonball_scatter",
 			"pie_40dragonball_scatter", "pie_50dragonball_scatter", "pie_60dragonball_scatter", "pie_70dragonball_scatter", "pie_80dragonball_scatter", "pie_90dragonball_scatter",
 			"pie_100dragonball_scatter", "pie_150dragonball_scatter", "pie_200dragonball_scatter"})
 		if err != nil {
@@ -1748,8 +1748,8 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 		}
 
 		w.Write(jsonBytes)
-	} else if token == "multiline6" {
-		vd, err := buildMulti("multiline6", []string{"pie_10dragonball", "pie_20dragonball", "pie_30dragonball",
+	} else if token == "multiline8" {
+		vd, err := buildMulti("multiline8", []string{"pie_10dragonball", "pie_20dragonball", "pie_30dragonball",
 			"pie_40dragonball", "pie_50dragonball", "pie_60dragonball", "pie_70dragonball", "pie_80dragonball", "pie_90dragonball",
 			"pie_100dragonball", "pie_150dragonball", "pie_200dragonball"})
 		if err != nil {
