@@ -726,6 +726,38 @@ func buildBoxplo(arrname []string, arrbm []int) (*viewerdbpb.ViewerData, error) 
 	return vd, nil
 }
 
+type boxplot2 struct {
+	fn []string
+}
+
+func buildBoxplot2(arr []boxplot2) (*viewerdbpb.ViewerData, error) {
+	pd := &viewerdbpb.Boxplot2Data{}
+
+	for _, v := range arr {
+		pd1 := &viewerdbpb.BoxplotData{}
+
+		for _, n := range v.fn {
+			bn, _ := buildBoxplotNode(n, 0)
+			pd1.Data = append(pd1.Data, bn)
+		}
+
+		pd.Lst = append(pd.Lst, pd1)
+	}
+
+	vjd := &viewerdbpb.ViewerData_Boxplot2{
+		Boxplot2: pd,
+	}
+
+	vd := &viewerdbpb.ViewerData{
+		Type:  viewerdbpb.ViewerType_BOXPLOT2,
+		Title: "user money boxplot 2",
+		Token: "usermoneyboxplot2",
+		Data:  vjd,
+	}
+
+	return vd, nil
+}
+
 // func (s *HTTPServer) procGraphQL(w http.ResponseWriter, r *http.Request) []byte {
 // 	// ankadbname := r.Header.Get("Ankadbname")
 
@@ -2165,6 +2197,25 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 		w.Write(jsonBytes)
 	} else if token == "multiline100" {
 		vd, err := buildMulti("multiline100", []string{"10_scatter", "20_scatter", "30_scatter"})
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "usermoneyboxplot2" {
+		vd, err := buildBoxplot2([]boxplot2{boxplot2{fn: []string{"pie_10whackamole", "pie_20whackamole", "pie_30whackamole", "pie_40whackamole", "pie_50whackamole", "pie_60whackamole",
+			"pie_70whackamole", "pie_80whackamole", "pie_90whackamole", "pie_100whackamole", "pie_150whackamole", "pie_200whackamole"}},
+			boxplot2{fn: []string{"pie_10magician", "pie_20magician", "pie_30magician", "pie_40magician", "pie_50magician", "pie_60magician",
+				"pie_70magician", "pie_80magician", "pie_90magician", "pie_100magician", "pie_150magician", "pie_200magician"}},
+			boxplot2{fn: []string{"pie_10dragonball", "pie_20dragonball", "pie_30dragonball", "pie_40dragonball", "pie_50dragonball", "pie_60dragonball",
+				"pie_70dragonball", "pie_80dragonball", "pie_90dragonball", "pie_100dragonball", "pie_150dragonball", "pie_200dragonball"}},
+			boxplot2{fn: []string{"pie_10wrathofthor", "pie_20wrathofthor", "pie_30wrathofthor", "pie_40wrathofthor", "pie_50wrathofthor", "pie_60wrathofthor",
+				"pie_70wrathofthor", "pie_80wrathofthor", "pie_90wrathofthor", "pie_100wrathofthor", "pie_150wrathofthor", "pie_200wrathofthor"}}})
 		if err != nil {
 			return
 		}
