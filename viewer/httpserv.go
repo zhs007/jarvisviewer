@@ -675,11 +675,11 @@ func buildBoxplotNode(fn string, basemoney int) (*viewerdbpb.BoxplotNode, error)
 
 	for _, v := range up.Arr {
 		bm := v.Destmoney
-		if bm < int32(200000-basemoney) {
-			bm = 0
-		} else {
-			bm = bm - int32(200000-basemoney)
-		}
+		// if bm < int32(200000-basemoney) {
+		// 	bm = 0
+		// } else {
+		// 	bm = bm - int32(200000-basemoney)
+		// }
 
 		bmf := float32(bm)
 
