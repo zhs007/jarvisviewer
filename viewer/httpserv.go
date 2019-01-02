@@ -641,7 +641,7 @@ func buildScatter2(token string, lstfn []string, off int) (*viewerdbpb.ViewerDat
 	// }
 
 	vd := &viewerdbpb.ViewerData{
-		Type:  viewerdbpb.ViewerType_SCATTER,
+		Type:  viewerdbpb.ViewerType_SCATTER2,
 		Title: token,
 		Token: token,
 		Data:  vjd,
