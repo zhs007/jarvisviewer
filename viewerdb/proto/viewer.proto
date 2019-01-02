@@ -14,6 +14,7 @@ enum ViewerType {
     SCATTER = 6;
     BOXPLOT = 7;
     DTGAME6 = 8;
+    SCATTER2 = 9;
 }
 
 // ValueType - Value type
@@ -149,6 +150,13 @@ message ScatterData {
     ValueType xType = 1;
     ValueType yType = 2;
     repeated ScatterNode data = 3;
+    string name = 4;
+}
+
+// Scatter2Data - scatter2 data
+//             - 散点图数据
+message Scatter2Data {
+    repeated ScatterData lst = 1;
 }
 
 // BoxplotNode - boxplot node
@@ -240,5 +248,7 @@ message ViewerData {
         BoxplotData boxplot = 1006;
         // dtgame6 - valid only type is DTGAME6
         DTGame6Data dtgame6 = 1007;
+        // scatter2 - valid only type is SCATTER2
+        Scatter2Data scatter2 = 1008;
     }
 }

@@ -575,20 +575,6 @@ func buildScatter(fn string, off int) (*viewerdbpb.ViewerData, error) {
 			XInt32: v.Destmoney,
 			YInt32: int32(v.Nums),
 		})
-		// dm := v.Destmoney - v.Destmoney%int32(off)
-		// if len(pd.Data) == 0 {
-		// 	pd.Data = append(pd.Data, &viewerdbpb.ScatterNode{
-		// 		XInt32: dm,
-		// 		YInt32: int32(v.Nums),
-		// 	})
-		// } else if v.Destmoney >= dm && v.Destmoney < dm+int32(off) {
-		// 	pd.Data[len(pd.Data)-1].YInt32 = pd.Data[len(pd.Data)-1].YInt32 + int32(v.Nums)
-		// } else {
-		// 	pd.Data = append(pd.Data, &viewerdbpb.ScatterNode{
-		// 		XInt32: v.Destmoney,
-		// 		YInt32: int32(v.Nums),
-		// 	})
-		// }
 	}
 
 	vjd := &viewerdbpb.ViewerData_Scatter{
@@ -599,6 +585,65 @@ func buildScatter(fn string, off int) (*viewerdbpb.ViewerData, error) {
 		Type:  viewerdbpb.ViewerType_SCATTER,
 		Title: fn + " scatter",
 		Token: fn,
+		Data:  vjd,
+	}
+
+	return vd, nil
+}
+
+func buildScatter2(token string, lstfn []string, off int) (*viewerdbpb.ViewerData, error) {
+	vjd := &viewerdbpb.ViewerData_Scatter2{
+		Scatter2: &viewerdbpb.Scatter2Data{},
+	}
+
+	for _, v := range lstfn {
+		fi, err := os.Open("./test/" + v + ".json")
+		if err != nil {
+			return nil, err
+		}
+
+		defer fi.Close()
+		fd, err := ioutil.ReadAll(fi)
+		if err != nil {
+			return nil, err
+		}
+
+		up := &DTUserPie{}
+		err = json.Unmarshal(fd, &up)
+		if err != nil {
+			return nil, err
+		}
+
+		pd := &viewerdbpb.ScatterData{
+			XType: viewerdbpb.ValueType_INT32,
+			YType: viewerdbpb.ValueType_INT32,
+			Name:  v,
+		}
+
+		mapnums := make(map[int32]*DTUserPieNode)
+
+		for _, v := range up.Arr {
+			insMapPieNode(mapnums, v, int32(off))
+		}
+
+		for _, v := range mapnums {
+			pd.Data = append(pd.Data, &viewerdbpb.ScatterNode{
+				XInt32: v.Destmoney,
+				YInt32: int32(v.Nums),
+			})
+		}
+
+		vjd.Scatter2.Lst = append(vjd.Scatter2.Lst, pd)
+	}
+
+	// vjd := &viewerdbpb.ViewerData_Scatter{
+	// 	Scatter: pd,
+	// }
+
+	vd := &viewerdbpb.ViewerData{
+		Type:  viewerdbpb.ViewerType_SCATTER,
+		Title: token,
+		Token: token,
 		Data:  vjd,
 	}
 
@@ -2070,6 +2115,54 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 		vd, err := buildMulti("multiline10", []string{"pie_10wrathofthor", "pie_20wrathofthor", "pie_30wrathofthor",
 			"pie_40wrathofthor", "pie_50wrathofthor", "pie_60wrathofthor", "pie_70wrathofthor", "pie_80wrathofthor",
 			"pie_90wrathofthor", "pie_100wrathofthor", "pie_150wrathofthor", "pie_200wrathofthor"})
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "10_scatter" {
+		vd, err := buildScatter2("10_scatter", []string{"pie_10whackamole", "pie_10magician", "pie_10dragonball", "pie_10wrathofthor"}, 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "20_scatter" {
+		vd, err := buildScatter2("20_scatter", []string{"pie_20whackamole", "pie_20magician", "pie_20dragonball", "pie_20wrathofthor"}, 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "30_scatter" {
+		vd, err := buildScatter2("30_scatter", []string{"pie_30whackamole", "pie_30magician", "pie_30dragonball", "pie_30wrathofthor"}, 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "multiline100" {
+		vd, err := buildMulti("multiline100", []string{"10_scatter", "20_scatter", "30_scatter"})
 		if err != nil {
 			return
 		}
