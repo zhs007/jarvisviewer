@@ -1112,7 +1112,9 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "usermoneyboxplot" {
-		vd, err := buildBoxplo([]string{"pie_10whackamole", "pie_50whackamole", "pie_100whackamole"}, []int{350 * 10, 350 * 50, 350 * 100})
+		vd, err := buildBoxplo([]string{"pie_10whackamole", "pie_20whackamole", "pie_30whackamole", "pie_40whackamole", "pie_50whackamole", "pie_60whackamole",
+			"pie_70whackamole", "pie_80whackamole", "pie_90whackamole", "pie_100whackamole", "pie_150whackamole", "pie_200whackamole"},
+			[]int{10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 150, 200})
 		if err != nil {
 			return
 		}
