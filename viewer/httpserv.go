@@ -567,11 +567,12 @@ func buildScatter(fn string, off int, mul float32, bm int) (*viewerdbpb.ViewerDa
 	mapnums := make(map[int32]*DTUserPieNode)
 
 	for _, v := range up.Arr {
+		v.Destmoney = int32(bm) + int32(float32(v.Destmoney-int32(bm))*mul)
+
 		insMapPieNode(mapnums, v, int32(off))
 	}
 
 	for _, v := range mapnums {
-		v.Destmoney = int32(float32(v.Destmoney-int32(bm)) * mul)
 		pd.Data = append(pd.Data, &viewerdbpb.ScatterNode{
 			XInt32: v.Destmoney,
 			YInt32: int32(v.Nums),
