@@ -1002,7 +1002,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_10whackamole_scatter" {
-		vd, err := buildScatter("pie_10whackamole", 100, 1, 2000000)
+		vd, err := buildScatter("pie_10whackamole", 100, 1, 200000)
 		if err != nil {
 			return
 		}
@@ -1014,7 +1014,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_20whackamole_scatter" {
-		vd, err := buildScatter("pie_20whackamole", 100, 1, 2000000)
+		vd, err := buildScatter("pie_20whackamole", 100, 1, 200000)
 		if err != nil {
 			return
 		}
@@ -1026,7 +1026,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_30whackamole_scatter" {
-		vd, err := buildScatter("pie_30whackamole", 100, 1, 2000000)
+		vd, err := buildScatter("pie_30whackamole", 100, 1, 200000)
 		if err != nil {
 			return
 		}
@@ -1038,7 +1038,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_40whackamole_scatter" {
-		vd, err := buildScatter("pie_40whackamole", 100, 1, 2000000)
+		vd, err := buildScatter("pie_40whackamole", 100, 1, 200000)
 		if err != nil {
 			return
 		}
@@ -1050,7 +1050,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_50whackamole_scatter" {
-		vd, err := buildScatter("pie_50whackamole", 100, 1, 2000000)
+		vd, err := buildScatter("pie_50whackamole", 100, 1, 200000)
 		if err != nil {
 			return
 		}
@@ -1062,7 +1062,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_60whackamole_scatter" {
-		vd, err := buildScatter("pie_60whackamole", 100, 1, 2000000)
+		vd, err := buildScatter("pie_60whackamole", 100, 1, 200000)
 		if err != nil {
 			return
 		}
@@ -1074,7 +1074,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_70whackamole_scatter" {
-		vd, err := buildScatter("pie_70whackamole", 100, 1, 2000000)
+		vd, err := buildScatter("pie_70whackamole", 100, 1, 200000)
 		if err != nil {
 			return
 		}
@@ -1086,7 +1086,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_80whackamole_scatter" {
-		vd, err := buildScatter("pie_80whackamole", 100, 1, 2000000)
+		vd, err := buildScatter("pie_80whackamole", 100, 1, 200000)
 		if err != nil {
 			return
 		}
@@ -1098,7 +1098,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_90whackamole_scatter" {
-		vd, err := buildScatter("pie_90whackamole", 100, 1, 2000000)
+		vd, err := buildScatter("pie_90whackamole", 100, 1, 200000)
 		if err != nil {
 			return
 		}
@@ -1110,7 +1110,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_100whackamole_scatter" {
-		vd, err := buildScatter("pie_100whackamole", 100, 1, 2000000)
+		vd, err := buildScatter("pie_100whackamole", 100, 1, 200000)
 		if err != nil {
 			return
 		}
@@ -1122,7 +1122,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_150whackamole_scatter" {
-		vd, err := buildScatter("pie_150whackamole", 100, 1, 2000000)
+		vd, err := buildScatter("pie_150whackamole", 100, 1, 200000)
 		if err != nil {
 			return
 		}
@@ -1134,7 +1134,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_200whackamole_scatter" {
-		vd, err := buildScatter("pie_200whackamole", 100, 1, 2000000)
+		vd, err := buildScatter("pie_200whackamole", 100, 1, 200000)
 		if err != nil {
 			return
 		}
@@ -1356,7 +1356,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_10magician_scatter" {
-		vd, err := buildScatter("pie_10magician", 100, 1, 2000000)
+		vd, err := buildScatter("pie_10magician", 100, 1, 200000)
 		if err != nil {
 			return
 		}
@@ -1368,7 +1368,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_20magician_scatter" {
-		vd, err := buildScatter("pie_20magician", 100, 1, 2000000)
+		vd, err := buildScatter("pie_20magician", 100, 1, 200000)
 		if err != nil {
 			return
 		}
@@ -1380,7 +1380,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_30magician_scatter" {
-		vd, err := buildScatter("pie_30magician", 100, 1, 2000000)
+		vd, err := buildScatter("pie_30magician", 100, 1, 200000)
 		if err != nil {
 			return
 		}
@@ -1392,7 +1392,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_40magician_scatter" {
-		vd, err := buildScatter("pie_40magician", 100, 1, 2000000)
+		vd, err := buildScatter("pie_40magician", 100, 1, 200000)
 		if err != nil {
 			return
 		}
@@ -1404,7 +1404,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_50magician_scatter" {
-		vd, err := buildScatter("pie_50magician", 100, 1, 2000000)
+		vd, err := buildScatter("pie_50magician", 100, 1, 200000)
 		if err != nil {
 			return
 		}
@@ -1416,7 +1416,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_60magician_scatter" {
-		vd, err := buildScatter("pie_60magician", 100, 1, 2000000)
+		vd, err := buildScatter("pie_60magician", 100, 1, 200000)
 		if err != nil {
 			return
 		}
@@ -1428,7 +1428,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_70magician_scatter" {
-		vd, err := buildScatter("pie_70magician", 100, 1, 2000000)
+		vd, err := buildScatter("pie_70magician", 100, 1, 200000)
 		if err != nil {
 			return
 		}
@@ -1440,7 +1440,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_80magician_scatter" {
-		vd, err := buildScatter("pie_80magician", 100, 1, 2000000)
+		vd, err := buildScatter("pie_80magician", 100, 1, 200000)
 		if err != nil {
 			return
 		}
@@ -1452,7 +1452,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_90magician_scatter" {
-		vd, err := buildScatter("pie_90magician", 100, 1, 2000000)
+		vd, err := buildScatter("pie_90magician", 100, 1, 200000)
 		if err != nil {
 			return
 		}
@@ -1464,7 +1464,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_100magician_scatter" {
-		vd, err := buildScatter("pie_100magician", 100, 1, 2000000)
+		vd, err := buildScatter("pie_100magician", 100, 1, 200000)
 		if err != nil {
 			return
 		}
@@ -1476,7 +1476,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_150magician_scatter" {
-		vd, err := buildScatter("pie_150magician", 100, 1, 2000000)
+		vd, err := buildScatter("pie_150magician", 100, 1, 200000)
 		if err != nil {
 			return
 		}
@@ -1488,7 +1488,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_200magician_scatter" {
-		vd, err := buildScatter("pie_200magician", 100, 1, 2000000)
+		vd, err := buildScatter("pie_200magician", 100, 1, 200000)
 		if err != nil {
 			return
 		}
@@ -1672,7 +1672,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_10dragonball_scatter" {
-		vd, err := buildScatter("pie_10dragonball", 100, 35.0/20.0, 2000000)
+		vd, err := buildScatter("pie_10dragonball", 100, 35.0/20.0, 200000)
 		if err != nil {
 			return
 		}
@@ -1684,7 +1684,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_20dragonball_scatter" {
-		vd, err := buildScatter("pie_20dragonball", 100, 35.0/20.0, 2000000)
+		vd, err := buildScatter("pie_20dragonball", 100, 35.0/20.0, 200000)
 		if err != nil {
 			return
 		}
@@ -1696,7 +1696,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_30dragonball_scatter" {
-		vd, err := buildScatter("pie_30dragonball", 100, 35.0/20.0, 2000000)
+		vd, err := buildScatter("pie_30dragonball", 100, 35.0/20.0, 200000)
 		if err != nil {
 			return
 		}
@@ -1708,7 +1708,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_40dragonball_scatter" {
-		vd, err := buildScatter("pie_40dragonball", 100, 35.0/20.0, 2000000)
+		vd, err := buildScatter("pie_40dragonball", 100, 35.0/20.0, 200000)
 		if err != nil {
 			return
 		}
@@ -1720,7 +1720,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_50dragonball_scatter" {
-		vd, err := buildScatter("pie_50dragonball", 100, 35.0/20.0, 2000000)
+		vd, err := buildScatter("pie_50dragonball", 100, 35.0/20.0, 200000)
 		if err != nil {
 			return
 		}
@@ -1732,7 +1732,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_60dragonball_scatter" {
-		vd, err := buildScatter("pie_60dragonball", 100, 35.0/20.0, 2000000)
+		vd, err := buildScatter("pie_60dragonball", 100, 35.0/20.0, 200000)
 		if err != nil {
 			return
 		}
@@ -1744,7 +1744,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_70dragonball_scatter" {
-		vd, err := buildScatter("pie_70dragonball", 100, 35.0/20.0, 2000000)
+		vd, err := buildScatter("pie_70dragonball", 100, 35.0/20.0, 200000)
 		if err != nil {
 			return
 		}
@@ -1756,7 +1756,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_80dragonball_scatter" {
-		vd, err := buildScatter("pie_80dragonball", 100, 35.0/20.0, 2000000)
+		vd, err := buildScatter("pie_80dragonball", 100, 35.0/20.0, 200000)
 		if err != nil {
 			return
 		}
@@ -1768,7 +1768,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_90dragonball_scatter" {
-		vd, err := buildScatter("pie_90dragonball", 100, 35.0/20.0, 2000000)
+		vd, err := buildScatter("pie_90dragonball", 100, 35.0/20.0, 200000)
 		if err != nil {
 			return
 		}
@@ -1780,7 +1780,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_100dragonball_scatter" {
-		vd, err := buildScatter("pie_100dragonball", 100, 35.0/20.0, 2000000)
+		vd, err := buildScatter("pie_100dragonball", 100, 35.0/20.0, 200000)
 		if err != nil {
 			return
 		}
@@ -1792,7 +1792,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_150dragonball_scatter" {
-		vd, err := buildScatter("pie_150dragonball", 100, 35.0/20.0, 2000000)
+		vd, err := buildScatter("pie_150dragonball", 100, 35.0/20.0, 200000)
 		if err != nil {
 			return
 		}
@@ -1804,7 +1804,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_200dragonball_scatter" {
-		vd, err := buildScatter("pie_200dragonball", 100, 35.0/20.0, 2000000)
+		vd, err := buildScatter("pie_200dragonball", 100, 35.0/20.0, 200000)
 		if err != nil {
 			return
 		}
@@ -1988,7 +1988,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_10wrathofthor_scatter" {
-		vd, err := buildScatter("pie_10wrathofthor", 100, 35.0/30.0, 2000000)
+		vd, err := buildScatter("pie_10wrathofthor", 100, 35.0/30.0, 200000)
 		if err != nil {
 			return
 		}
@@ -2000,7 +2000,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_20wrathofthor_scatter" {
-		vd, err := buildScatter("pie_20wrathofthor", 100, 35.0/30.0, 2000000)
+		vd, err := buildScatter("pie_20wrathofthor", 100, 35.0/30.0, 200000)
 		if err != nil {
 			return
 		}
@@ -2012,7 +2012,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_30wrathofthor_scatter" {
-		vd, err := buildScatter("pie_30wrathofthor", 100, 35.0/30.0, 2000000)
+		vd, err := buildScatter("pie_30wrathofthor", 100, 35.0/30.0, 200000)
 		if err != nil {
 			return
 		}
@@ -2024,7 +2024,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_40wrathofthor_scatter" {
-		vd, err := buildScatter("pie_40wrathofthor", 100, 35.0/30.0, 2000000)
+		vd, err := buildScatter("pie_40wrathofthor", 100, 35.0/30.0, 200000)
 		if err != nil {
 			return
 		}
@@ -2036,7 +2036,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_50wrathofthor_scatter" {
-		vd, err := buildScatter("pie_50wrathofthor", 100, 35.0/30.0, 2000000)
+		vd, err := buildScatter("pie_50wrathofthor", 100, 35.0/30.0, 200000)
 		if err != nil {
 			return
 		}
@@ -2048,7 +2048,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_60wrathofthor_scatter" {
-		vd, err := buildScatter("pie_60wrathofthor", 100, 35.0/30.0, 2000000)
+		vd, err := buildScatter("pie_60wrathofthor", 100, 35.0/30.0, 200000)
 		if err != nil {
 			return
 		}
@@ -2060,7 +2060,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_70wrathofthor_scatter" {
-		vd, err := buildScatter("pie_70wrathofthor", 100, 35.0/30.0, 2000000)
+		vd, err := buildScatter("pie_70wrathofthor", 100, 35.0/30.0, 200000)
 		if err != nil {
 			return
 		}
@@ -2072,7 +2072,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_80wrathofthor_scatter" {
-		vd, err := buildScatter("pie_80wrathofthor", 100, 35.0/30.0, 2000000)
+		vd, err := buildScatter("pie_80wrathofthor", 100, 35.0/30.0, 200000)
 		if err != nil {
 			return
 		}
@@ -2084,7 +2084,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_90wrathofthor_scatter" {
-		vd, err := buildScatter("pie_90wrathofthor", 100, 35.0/30.0, 2000000)
+		vd, err := buildScatter("pie_90wrathofthor", 100, 35.0/30.0, 200000)
 		if err != nil {
 			return
 		}
@@ -2096,7 +2096,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_100wrathofthor_scatter" {
-		vd, err := buildScatter("pie_100wrathofthor", 100, 35.0/30.0, 2000000)
+		vd, err := buildScatter("pie_100wrathofthor", 100, 35.0/30.0, 200000)
 		if err != nil {
 			return
 		}
@@ -2108,7 +2108,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_150wrathofthor_scatter" {
-		vd, err := buildScatter("pie_150wrathofthor", 100, 35.0/30.0, 2000000)
+		vd, err := buildScatter("pie_150wrathofthor", 100, 35.0/30.0, 200000)
 		if err != nil {
 			return
 		}
@@ -2120,7 +2120,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_200wrathofthor_scatter" {
-		vd, err := buildScatter("pie_200wrathofthor", 100, 35.0/30.0, 2000000)
+		vd, err := buildScatter("pie_200wrathofthor", 100, 35.0/30.0, 200000)
 		if err != nil {
 			return
 		}
