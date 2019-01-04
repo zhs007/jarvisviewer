@@ -760,6 +760,94 @@ func buildBoxplot2(arr []boxplot2) (*viewerdbpb.ViewerData, error) {
 	return vd, nil
 }
 
+type boxplot3 struct {
+	name string
+	fn   []string
+}
+
+func buildDataset(fn string) (*viewerdbpb.Dataset, error) {
+	fi, err := os.Open("./test/" + fn + ".json")
+	if err != nil {
+		return nil, err
+	}
+
+	defer fi.Close()
+	fd, err := ioutil.ReadAll(fi)
+	if err != nil {
+		return nil, err
+	}
+
+	up := &DTUserPie{}
+	err = json.Unmarshal(fd, &up)
+	if err != nil {
+		return nil, err
+	}
+
+	pd := &viewerdbpb.Dataset{
+		Name:    fn,
+		ValType: viewerdbpb.ValueType_FLOAT32,
+	}
+
+	for _, v := range up.Arr {
+		bm := v.Destmoney
+
+		bmf := float32(bm)
+
+		for i := 0; i < v.Nums; i++ {
+			pd.ArrFloat32 = append(pd.ArrFloat32, bmf)
+		}
+	}
+
+	return pd, nil
+}
+
+func buildBoxplot3(arr []boxplot3, datasetname string) (*viewerdbpb.ViewerData, error) {
+	pd := &viewerdbpb.Boxplot3Data{}
+
+	if datasetname == "" {
+		for _, v := range arr {
+			b3 := &viewerdbpb.Boxplot3{
+				Category: v.name,
+			}
+
+			for _, n := range v.fn {
+				b3.DatasetName = append(b3.DatasetName, n)
+			}
+
+			pd.Boxplots = append(pd.Boxplots, b3)
+		}
+
+		vjd := &viewerdbpb.ViewerData_Boxplot3{
+			Boxplot3: pd,
+		}
+
+		vd := &viewerdbpb.ViewerData{
+			Type:  viewerdbpb.ViewerType_BOXPLOT3,
+			Title: "user money boxplot 3",
+			Token: "usermoneyboxplot10",
+			Data:  vjd,
+		}
+
+		return vd, nil
+	}
+
+	bn, _ := buildDataset(datasetname)
+	pd.Datasets[datasetname] = bn
+
+	vjd := &viewerdbpb.ViewerData_Boxplot3{
+		Boxplot3: pd,
+	}
+
+	vd := &viewerdbpb.ViewerData{
+		Type:  viewerdbpb.ViewerType_BOXPLOT3,
+		Title: "user money boxplot 3",
+		Token: "usermoneyboxplot10",
+		Data:  vjd,
+	}
+
+	return vd, nil
+}
+
 // func (s *HTTPServer) procGraphQL(w http.ResponseWriter, r *http.Request) []byte {
 // 	// ankadbname := r.Header.Get("Ankadbname")
 
@@ -2687,6 +2775,27 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 		vd, err := buildMulti("multiline12", []string{"pie_10magicbean", "pie_20magicbean", "pie_30magicbean",
 			"pie_40magicbean", "pie_50magicbean", "pie_60magicbean", "pie_70magicbean", "pie_80magicbean",
 			"pie_90magicbean", "pie_100magicbean", "pie_150magicbean", "pie_200magicbean"})
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "usermoneyboxplot100" {
+		dataset := r.URL.Query().Get("dataset")
+
+		vd, err := buildBoxplot3([]boxplot3{boxplot3{name: "whackamole", fn: []string{"pie_10whackamole", "pie_20whackamole", "pie_30whackamole", "pie_40whackamole", "pie_50whackamole", "pie_60whackamole",
+			"pie_70whackamole", "pie_80whackamole", "pie_90whackamole", "pie_100whackamole", "pie_150whackamole", "pie_200whackamole"}},
+			boxplot3{name: "magician", fn: []string{"pie_10magician", "pie_20magician", "pie_30magician", "pie_40magician", "pie_50magician", "pie_60magician",
+				"pie_70magician", "pie_80magician", "pie_90magician", "pie_100magician", "pie_150magician", "pie_200magician"}},
+			boxplot3{name: "magician", fn: []string{"pie_10dragonball", "pie_20dragonball", "pie_30dragonball", "pie_40dragonball", "pie_50dragonball", "pie_60dragonball",
+				"pie_70dragonball", "pie_80dragonball", "pie_90dragonball", "pie_100dragonball", "pie_150dragonball", "pie_200dragonball"}},
+			boxplot3{name: "magician", fn: []string{"pie_10wrathofthor", "pie_20wrathofthor", "pie_30wrathofthor", "pie_40wrathofthor", "pie_50wrathofthor", "pie_60wrathofthor",
+				"pie_70wrathofthor", "pie_80wrathofthor", "pie_90wrathofthor", "pie_100wrathofthor", "pie_150wrathofthor", "pie_200wrathofthor"}}}, dataset)
 		if err != nil {
 			return
 		}
