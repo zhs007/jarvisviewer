@@ -801,7 +801,7 @@ func buildDataset(fn string) (*viewerdbpb.Dataset, error) {
 	return pd, nil
 }
 
-func buildBoxplot3(arr []boxplot3, datasetname string) (*viewerdbpb.ViewerData, error) {
+func buildBoxplot3(arr []boxplot3, xval []string, datasetname string) (*viewerdbpb.ViewerData, error) {
 	pd := &viewerdbpb.Boxplot3Data{}
 
 	if datasetname == "" {
@@ -815,6 +815,15 @@ func buildBoxplot3(arr []boxplot3, datasetname string) (*viewerdbpb.ViewerData, 
 			}
 
 			pd.Boxplots = append(pd.Boxplots, b3)
+		}
+
+		pd.XVal = &viewerdbpb.Dataset{
+			Name:    "xVal",
+			ValType: viewerdbpb.ValueType_STRING,
+		}
+
+		for _, v := range xval {
+			pd.XVal.ArrString = append(pd.XVal.ArrString, v)
 		}
 
 		vjd := &viewerdbpb.ViewerData_Boxplot3{
@@ -831,6 +840,9 @@ func buildBoxplot3(arr []boxplot3, datasetname string) (*viewerdbpb.ViewerData, 
 		return vd, nil
 	}
 
+	// for _, v := range arr {
+	// 	if v.name == category {
+	// 		if index < len(v.fn) {
 	bn, _ := buildDataset(datasetname)
 	pd.Datasets = make(map[string]*viewerdbpb.Dataset)
 	pd.Datasets[datasetname] = bn
@@ -847,6 +859,43 @@ func buildBoxplot3(arr []boxplot3, datasetname string) (*viewerdbpb.ViewerData, 
 	}
 
 	return vd, nil
+	// 		}
+	// 	}
+	// }
+
+	// for _, v := range arr {
+	// 	b3 := &viewerdbpb.Boxplot3{
+	// 		Category: v.name,
+	// 	}
+
+	// 	for _, n := range v.fn {
+	// 		b3.DatasetName = append(b3.DatasetName, n)
+	// 	}
+
+	// 	pd.Boxplots = append(pd.Boxplots, b3)
+	// }
+
+	// pd.XVal = &viewerdbpb.Dataset{
+	// 	Name:    "xVal",
+	// 	ValType: viewerdbpb.ValueType_STRING,
+	// }
+
+	// for _, v := range xval {
+	// 	pd.XVal.ArrString = append(pd.XVal.ArrString, v)
+	// }
+
+	// vjd := &viewerdbpb.ViewerData_Boxplot3{
+	// 	Boxplot3: pd,
+	// }
+
+	// vd := &viewerdbpb.ViewerData{
+	// 	Type:  viewerdbpb.ViewerType_BOXPLOT3,
+	// 	Title: "user money boxplot 3",
+	// 	Token: "usermoneyboxplot10",
+	// 	Data:  vjd,
+	// }
+
+	// return vd, nil
 }
 
 // func (s *HTTPServer) procGraphQL(w http.ResponseWriter, r *http.Request) []byte {
@@ -2796,7 +2845,8 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 			boxplot3{name: "dragonball", fn: []string{"pie_10dragonball", "pie_20dragonball", "pie_30dragonball", "pie_40dragonball", "pie_50dragonball", "pie_60dragonball",
 				"pie_70dragonball", "pie_80dragonball", "pie_90dragonball", "pie_100dragonball", "pie_150dragonball", "pie_200dragonball"}},
 			boxplot3{name: "wrathofthor", fn: []string{"pie_10wrathofthor", "pie_20wrathofthor", "pie_30wrathofthor", "pie_40wrathofthor", "pie_50wrathofthor", "pie_60wrathofthor",
-				"pie_70wrathofthor", "pie_80wrathofthor", "pie_90wrathofthor", "pie_100wrathofthor", "pie_150wrathofthor", "pie_200wrathofthor"}}}, dataset)
+				"pie_70wrathofthor", "pie_80wrathofthor", "pie_90wrathofthor", "pie_100wrathofthor", "pie_150wrathofthor", "pie_200wrathofthor"}}},
+			[]string{"10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "150", "200"}, dataset)
 		if err != nil {
 			return
 		}
