@@ -2379,6 +2379,324 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 		}
 
 		w.Write(jsonBytes)
+	} else if token == "pie_10magicbean" {
+		vd, err := buildPie("pie_10magicbean", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_20magicbean" {
+		vd, err := buildPie("pie_20magicbean", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_30magicbean" {
+		vd, err := buildPie("pie_30magicbean", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_40magicbean" {
+		vd, err := buildPie("pie_40magicbean", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_50magicbean" {
+		vd, err := buildPie("pie_50magicbean", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_60magicbean" {
+		vd, err := buildPie("pie_60magicbean", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_70magicbean" {
+		vd, err := buildPie("pie_70magicbean", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_80magicbean" {
+		vd, err := buildPie("pie_80magicbean", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_90magicbean" {
+		vd, err := buildPie("pie_90magicbean", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_100magicbean" {
+		vd, err := buildPie("pie_100magicbean", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_150magicbean" {
+		vd, err := buildPie("pie_150magicbean", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_200magicbean" {
+		vd, err := buildPie("pie_200magicbean", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_10magicbean_scatter" {
+		vd, err := buildScatter("pie_10magicbean", 100, 1, 200000)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_20magicbean_scatter" {
+		vd, err := buildScatter("pie_20magicbean", 100, 1, 200000)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_30magicbean_scatter" {
+		vd, err := buildScatter("pie_30magicbean", 100, 1, 200000)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_40magicbean_scatter" {
+		vd, err := buildScatter("pie_40magicbean", 100, 1, 200000)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_50magicbean_scatter" {
+		vd, err := buildScatter("pie_50magicbean", 100, 1, 200000)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_60magicbean_scatter" {
+		vd, err := buildScatter("pie_60magicbean", 100, 1, 200000)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_70magicbean_scatter" {
+		vd, err := buildScatter("pie_70magicbean", 100, 1, 200000)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_80magicbean_scatter" {
+		vd, err := buildScatter("pie_80magicbean", 100, 1, 200000)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_90magicbean_scatter" {
+		vd, err := buildScatter("pie_90magicbean", 100, 1, 200000)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_100magicbean_scatter" {
+		vd, err := buildScatter("pie_100magicbean", 100, 1, 200000)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_150magicbean_scatter" {
+		vd, err := buildScatter("pie_150magicbean", 100, 1, 200000)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_200magicbean_scatter" {
+		vd, err := buildScatter("pie_200magicbean", 100, 1, 200000)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "multiline11" {
+		vd, err := buildMulti("multiline11", []string{"pie_10magicbean_scatter", "pie_20magicbean_scatter",
+			"pie_30magicbean_scatter", "pie_40magicbean_scatter", "pie_50magicbean_scatter",
+			"pie_60magicbean_scatter", "pie_70magicbean_scatter", "pie_80magicbean_scatter",
+			"pie_90magicbean_scatter", "pie_100magicbean_scatter", "pie_150magicbean_scatter",
+			"pie_200magicbean_scatter"})
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "multiline12" {
+		vd, err := buildMulti("multiline12", []string{"pie_10magicbean", "pie_20magicbean", "pie_30magicbean",
+			"pie_40magicbean", "pie_50magicbean", "pie_60magicbean", "pie_70magicbean", "pie_80magicbean",
+			"pie_90magicbean", "pie_100magicbean", "pie_150magicbean", "pie_200magicbean"})
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
 	}
 }
 
