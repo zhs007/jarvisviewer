@@ -832,6 +832,7 @@ func buildBoxplot3(arr []boxplot3, datasetname string) (*viewerdbpb.ViewerData, 
 	}
 
 	bn, _ := buildDataset(datasetname)
+	pd.Datasets = make(map[string]*viewerdbpb.Dataset)
 	pd.Datasets[datasetname] = bn
 
 	vjd := &viewerdbpb.ViewerData_Boxplot3{
@@ -2792,9 +2793,9 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 			"pie_70whackamole", "pie_80whackamole", "pie_90whackamole", "pie_100whackamole", "pie_150whackamole", "pie_200whackamole"}},
 			boxplot3{name: "magician", fn: []string{"pie_10magician", "pie_20magician", "pie_30magician", "pie_40magician", "pie_50magician", "pie_60magician",
 				"pie_70magician", "pie_80magician", "pie_90magician", "pie_100magician", "pie_150magician", "pie_200magician"}},
-			boxplot3{name: "magician", fn: []string{"pie_10dragonball", "pie_20dragonball", "pie_30dragonball", "pie_40dragonball", "pie_50dragonball", "pie_60dragonball",
+			boxplot3{name: "dragonball", fn: []string{"pie_10dragonball", "pie_20dragonball", "pie_30dragonball", "pie_40dragonball", "pie_50dragonball", "pie_60dragonball",
 				"pie_70dragonball", "pie_80dragonball", "pie_90dragonball", "pie_100dragonball", "pie_150dragonball", "pie_200dragonball"}},
-			boxplot3{name: "magician", fn: []string{"pie_10wrathofthor", "pie_20wrathofthor", "pie_30wrathofthor", "pie_40wrathofthor", "pie_50wrathofthor", "pie_60wrathofthor",
+			boxplot3{name: "wrathofthor", fn: []string{"pie_10wrathofthor", "pie_20wrathofthor", "pie_30wrathofthor", "pie_40wrathofthor", "pie_50wrathofthor", "pie_60wrathofthor",
 				"pie_70wrathofthor", "pie_80wrathofthor", "pie_90wrathofthor", "pie_100wrathofthor", "pie_150wrathofthor", "pie_200wrathofthor"}}}, dataset)
 		if err != nil {
 			return
