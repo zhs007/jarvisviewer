@@ -833,7 +833,7 @@ func buildBoxplot3(arr []boxplot3, xval []string, datasetname string) (*viewerdb
 		vd := &viewerdbpb.ViewerData{
 			Type:  viewerdbpb.ViewerType_BOXPLOT3,
 			Title: "user money boxplot 3",
-			Token: "usermoneyboxplot10",
+			Token: "usermoneyboxplot100",
 			Data:  vjd,
 		}
 
