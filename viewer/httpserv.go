@@ -542,6 +542,8 @@ func buildLines(mytoken string, tokens []string) (*viewerdbpb.ViewerData, error)
 }
 
 func buildScatter(fn string, off int, mul float32, bm int) (*viewerdbpb.ViewerData, error) {
+	mul = 0.0
+
 	fi, err := os.Open("./test/" + fn + ".json")
 	if err != nil {
 		return nil, err
