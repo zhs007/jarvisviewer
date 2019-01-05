@@ -17,6 +17,7 @@ enum ViewerType {
     SCATTER2 = 9;
     BOXPLOT2 = 10;
     BOXPLOT3 = 11;
+    SCATTER3 = 12;
 }
 
 // ValueType - Value type
@@ -163,7 +164,7 @@ message Scatter2Data {
 }
 
 // Dataset - dataset
-//             - dataset
+//         - dataset
 message Dataset {
     string Name = 1;
     ValueType valType = 2;
@@ -172,6 +173,41 @@ message Dataset {
     repeated float arrFloat32 = 5;
     repeated double arrFloat64 = 6;
     repeated string arrString = 7;
+}
+
+// Dataset2D - dataset 2d
+//           - 二维的dataset
+message Dataset2D {
+    string Name = 1;
+
+    ValueType xType = 10;
+    repeated int32 xArrInt32 = 11;
+    repeated int64 xArrInt64 = 12;
+    repeated float xArrFloat32 = 13;
+    repeated double xArrFloat64 = 14;
+    repeated string xArrString = 15;
+
+    ValueType yType = 30;
+    repeated int32 yArrInt32 = 31;
+    repeated int64 yArrInt64 = 32;
+    repeated float yArrFloat32 = 33;
+    repeated double yArrFloat64 = 34;
+    repeated string yArrString = 35;
+}
+
+// Scatter3 - scatter3
+//          - 盒须图数据
+message Scatter3 {
+    string category = 1;
+    repeated string datasetName = 2;
+}
+
+// Scatter3Data - scatter3 data
+//              - 散点图数据
+message Scatter3Data {
+    map<string, Dataset2D> datasets = 1;
+    repeated Scatter3 scatter3 = 2;
+    Dataset zVal = 3;
 }
 
 // BoxplotNode - boxplot node
@@ -291,5 +327,7 @@ message ViewerData {
         Boxplot2Data boxplot2 = 1009;
         // boxplot3 - valid only type is BOXPLOT3
         Boxplot3Data boxplot3 = 1010;
+        // scatter3 - valid only type is SCATTER3
+        Scatter3Data scatter3 = 1011;
     }
 }

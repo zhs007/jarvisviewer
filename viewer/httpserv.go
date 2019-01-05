@@ -840,9 +840,6 @@ func buildBoxplot3(arr []boxplot3, xval []string, datasetname string) (*viewerdb
 		return vd, nil
 	}
 
-	// for _, v := range arr {
-	// 	if v.name == category {
-	// 		if index < len(v.fn) {
 	bn, _ := buildDataset(datasetname)
 	pd.Datasets = make(map[string]*viewerdbpb.Dataset)
 	pd.Datasets[datasetname] = bn
@@ -859,43 +856,125 @@ func buildBoxplot3(arr []boxplot3, xval []string, datasetname string) (*viewerdb
 	}
 
 	return vd, nil
-	// 		}
-	// 	}
+}
+
+type scatter3 struct {
+	name string
+	fn   []string
+}
+
+func buildDataset2D(fn string, off int) (*viewerdbpb.Dataset2D, error) {
+	// vjd := &viewerdbpb.ViewerData_Scatter2{
+	// 	Scatter2: &viewerdbpb.Scatter2Data{},
 	// }
 
-	// for _, v := range arr {
-	// 	b3 := &viewerdbpb.Boxplot3{
-	// 		Category: v.name,
-	// 	}
+	// for _, v := range lstfn {
+	fi, err := os.Open("./test/" + fn + ".json")
+	if err != nil {
+		return nil, err
+	}
 
-	// 	for _, n := range v.fn {
-	// 		b3.DatasetName = append(b3.DatasetName, n)
-	// 	}
+	defer fi.Close()
+	fd, err := ioutil.ReadAll(fi)
+	if err != nil {
+		return nil, err
+	}
 
-	// 	pd.Boxplots = append(pd.Boxplots, b3)
+	up := &DTUserPie{}
+	err = json.Unmarshal(fd, &up)
+	if err != nil {
+		return nil, err
+	}
+
+	pd := &viewerdbpb.Dataset2D{
+		XType: viewerdbpb.ValueType_INT32,
+		YType: viewerdbpb.ValueType_INT32,
+		Name:  fn,
+	}
+
+	mapnums := make(map[int32]*DTUserPieNode)
+
+	for _, v := range up.Arr {
+		insMapPieNode(mapnums, v, int32(off))
+	}
+
+	for _, v := range mapnums {
+		pd.XArrInt32 = append(pd.XArrInt32, v.Destmoney)
+		pd.YArrInt32 = append(pd.YArrInt32, int32(v.Nums))
+	}
+
+	// vjd.Scatter2.Lst = append(vjd.Scatter2.Lst, pd)
 	// }
 
-	// pd.XVal = &viewerdbpb.Dataset{
-	// 	Name:    "xVal",
-	// 	ValType: viewerdbpb.ValueType_STRING,
-	// }
-
-	// for _, v := range xval {
-	// 	pd.XVal.ArrString = append(pd.XVal.ArrString, v)
-	// }
-
-	// vjd := &viewerdbpb.ViewerData_Boxplot3{
-	// 	Boxplot3: pd,
+	// vjd := &viewerdbpb.ViewerData_Scatter{
+	// 	Scatter: pd,
 	// }
 
 	// vd := &viewerdbpb.ViewerData{
-	// 	Type:  viewerdbpb.ViewerType_BOXPLOT3,
-	// 	Title: "user money boxplot 3",
-	// 	Token: "usermoneyboxplot10",
+	// 	Type:  viewerdbpb.ViewerType_SCATTER2,
+	// 	Title: token,
+	// 	Token: token,
 	// 	Data:  vjd,
 	// }
 
-	// return vd, nil
+	return pd, nil
+}
+
+func buildScatter3(token string, arr []scatter3, zval []string, datasetname string, off int) (*viewerdbpb.ViewerData, error) {
+	pd := &viewerdbpb.Scatter3Data{}
+
+	if datasetname == "" {
+		for _, v := range arr {
+			b3 := &viewerdbpb.Scatter3{
+				Category: v.name,
+			}
+
+			for _, n := range v.fn {
+				b3.DatasetName = append(b3.DatasetName, n)
+			}
+
+			pd.Scatter3 = append(pd.Scatter3, b3)
+		}
+
+		pd.ZVal = &viewerdbpb.Dataset{
+			Name:    "zVal",
+			ValType: viewerdbpb.ValueType_STRING,
+		}
+
+		for _, v := range zval {
+			pd.ZVal.ArrString = append(pd.ZVal.ArrString, v)
+		}
+
+		vjd := &viewerdbpb.ViewerData_Scatter3{
+			Scatter3: pd,
+		}
+
+		vd := &viewerdbpb.ViewerData{
+			Type:  viewerdbpb.ViewerType_SCATTER3,
+			Title: "scatter 3",
+			Token: token,
+			Data:  vjd,
+		}
+
+		return vd, nil
+	}
+
+	bn, _ := buildDataset2D(datasetname, off)
+	pd.Datasets = make(map[string]*viewerdbpb.Dataset2D)
+	pd.Datasets[datasetname] = bn
+
+	vjd := &viewerdbpb.ViewerData_Scatter3{
+		Scatter3: pd,
+	}
+
+	vd := &viewerdbpb.ViewerData{
+		Type:  viewerdbpb.ViewerType_SCATTER3,
+		Title: "scatter 3",
+		Token: token,
+		Data:  vjd,
+	}
+
+	return vd, nil
 }
 
 // func (s *HTTPServer) procGraphQL(w http.ResponseWriter, r *http.Request) []byte {
@@ -2847,6 +2926,28 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 			boxplot3{name: "wrathofthor", fn: []string{"pie_10wrathofthor", "pie_20wrathofthor", "pie_30wrathofthor", "pie_40wrathofthor", "pie_50wrathofthor", "pie_60wrathofthor",
 				"pie_70wrathofthor", "pie_80wrathofthor", "pie_90wrathofthor", "pie_100wrathofthor", "pie_150wrathofthor", "pie_200wrathofthor"}}},
 			[]string{"10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "150", "200"}, dataset)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "allgamescatter3" {
+		dataset := r.URL.Query().Get("dataset")
+
+		vd, err := buildScatter3(token, []scatter3{scatter3{name: "whackamole", fn: []string{"pie_10whackamole", "pie_20whackamole", "pie_30whackamole", "pie_40whackamole", "pie_50whackamole", "pie_60whackamole",
+			"pie_70whackamole", "pie_80whackamole", "pie_90whackamole", "pie_100whackamole", "pie_150whackamole", "pie_200whackamole"}},
+			scatter3{name: "magician", fn: []string{"pie_10magician", "pie_20magician", "pie_30magician", "pie_40magician", "pie_50magician", "pie_60magician",
+				"pie_70magician", "pie_80magician", "pie_90magician", "pie_100magician", "pie_150magician", "pie_200magician"}},
+			scatter3{name: "dragonball", fn: []string{"pie_10dragonball", "pie_20dragonball", "pie_30dragonball", "pie_40dragonball", "pie_50dragonball", "pie_60dragonball",
+				"pie_70dragonball", "pie_80dragonball", "pie_90dragonball", "pie_100dragonball", "pie_150dragonball", "pie_200dragonball"}},
+			scatter3{name: "wrathofthor", fn: []string{"pie_10wrathofthor", "pie_20wrathofthor", "pie_30wrathofthor", "pie_40wrathofthor", "pie_50wrathofthor", "pie_60wrathofthor",
+				"pie_70wrathofthor", "pie_80wrathofthor", "pie_90wrathofthor", "pie_100wrathofthor", "pie_150wrathofthor", "pie_200wrathofthor"}}},
+			[]string{"10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "150", "200"}, dataset, 100)
 		if err != nil {
 			return
 		}
