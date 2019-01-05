@@ -3059,7 +3059,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_10dnp_scatter" {
-		vd, err := buildScatter("pie_10dnp", 100, 1, 200000)
+		vd, err := buildScatter("pie_10dnp", 100, 60/35.0, 200000)
 		if err != nil {
 			return
 		}
@@ -3071,7 +3071,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_20dnp_scatter" {
-		vd, err := buildScatter("pie_20dnp", 100, 1, 200000)
+		vd, err := buildScatter("pie_20dnp", 100, 60/35.0, 200000)
 		if err != nil {
 			return
 		}
@@ -3083,7 +3083,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_30dnp_scatter" {
-		vd, err := buildScatter("pie_30dnp", 100, 1, 200000)
+		vd, err := buildScatter("pie_30dnp", 100, 60/35.0, 200000)
 		if err != nil {
 			return
 		}
@@ -3095,7 +3095,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_40dnp_scatter" {
-		vd, err := buildScatter("pie_40dnp", 100, 1, 200000)
+		vd, err := buildScatter("pie_40dnp", 100, 60/35.0, 200000)
 		if err != nil {
 			return
 		}
@@ -3107,7 +3107,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_50dnp_scatter" {
-		vd, err := buildScatter("pie_50dnp", 100, 1, 200000)
+		vd, err := buildScatter("pie_50dnp", 100, 60/35.0, 200000)
 		if err != nil {
 			return
 		}
@@ -3119,7 +3119,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_60dnp_scatter" {
-		vd, err := buildScatter("pie_60dnp", 100, 1, 200000)
+		vd, err := buildScatter("pie_60dnp", 100, 60/35.0, 200000)
 		if err != nil {
 			return
 		}
@@ -3131,7 +3131,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_70dnp_scatter" {
-		vd, err := buildScatter("pie_70dnp", 100, 1, 200000)
+		vd, err := buildScatter("pie_70dnp", 100, 60/35.0, 200000)
 		if err != nil {
 			return
 		}
@@ -3143,7 +3143,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_80dnp_scatter" {
-		vd, err := buildScatter("pie_80dnp", 100, 1, 200000)
+		vd, err := buildScatter("pie_80dnp", 100, 60/35.0, 200000)
 		if err != nil {
 			return
 		}
@@ -3155,7 +3155,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_90dnp_scatter" {
-		vd, err := buildScatter("pie_90dnp", 100, 1, 200000)
+		vd, err := buildScatter("pie_90dnp", 100, 60/35.0, 200000)
 		if err != nil {
 			return
 		}
@@ -3167,7 +3167,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_100dnp_scatter" {
-		vd, err := buildScatter("pie_100dnp", 100, 1, 200000)
+		vd, err := buildScatter("pie_100dnp", 100, 60/35.0, 200000)
 		if err != nil {
 			return
 		}
@@ -3179,7 +3179,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_150dnp_scatter" {
-		vd, err := buildScatter("pie_150dnp", 100, 1, 200000)
+		vd, err := buildScatter("pie_150dnp", 100, 60/35.0, 200000)
 		if err != nil {
 			return
 		}
@@ -3191,7 +3191,7 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "pie_200dnp_scatter" {
-		vd, err := buildScatter("pie_200dnp", 100, 1, 200000)
+		vd, err := buildScatter("pie_200dnp", 100, 60/35.0, 200000)
 		if err != nil {
 			return
 		}
