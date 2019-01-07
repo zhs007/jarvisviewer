@@ -2383,8 +2383,8 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "10_scatter" {
-		vd, err := buildScatter2("10_scatter", []string{"pie_10whackamole", "pie_10magician", "pie_10dragonball", "pie_10wrathofthor", "pie_10magicbean", "pie_10dnp"}, 100, []float32{
-			1.0, 1.0, 35 / 20.0, 35 / 30.0, 35 / 40.0, 35 / 60.0,
+		vd, err := buildScatter2("10_scatter", []string{"pie_10whackamole", "pie_10magician", "pie_10dragonball", "pie_10wrathofthor", "pie_10magicbean", "pie_10dnp", "pie_10legendary"}, 100, []float32{
+			1.0, 1.0, 35 / 20.0, 35 / 30.0, 35 / 40.0, 35 / 60.0, 30 / 60.0,
 		}, 200000)
 		if err != nil {
 			return
@@ -2397,8 +2397,8 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "20_scatter" {
-		vd, err := buildScatter2("20_scatter", []string{"pie_20whackamole", "pie_20magician", "pie_20dragonball", "pie_20wrathofthor", "pie_20magicbean", "pie_20dnp"}, 100, []float32{
-			1.0, 1.0, 35 / 20.0, 35 / 30.0, 35 / 40.0, 35 / 60.0,
+		vd, err := buildScatter2("20_scatter", []string{"pie_20whackamole", "pie_20magician", "pie_20dragonball", "pie_20wrathofthor", "pie_20magicbean", "pie_20dnp", "pie_20legendary"}, 100, []float32{
+			1.0, 1.0, 35 / 20.0, 35 / 30.0, 35 / 40.0, 35 / 60.0, 30 / 60.0,
 		}, 200000)
 		if err != nil {
 			return
@@ -2411,8 +2411,8 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "30_scatter" {
-		vd, err := buildScatter2("30_scatter", []string{"pie_30whackamole", "pie_30magician", "pie_30dragonball", "pie_30wrathofthor", "pie_30magicbean", "pie_30dnp"}, 100, []float32{
-			1.0, 1.0, 35 / 20.0, 35 / 30.0, 35 / 40.0, 35 / 60.0,
+		vd, err := buildScatter2("30_scatter", []string{"pie_30whackamole", "pie_30magician", "pie_30dragonball", "pie_30wrathofthor", "pie_30magicbean", "pie_30dnp", "pie_30legendary"}, 100, []float32{
+			1.0, 1.0, 35 / 20.0, 35 / 30.0, 35 / 40.0, 35 / 60.0, 30 / 60.0,
 		}, 200000)
 		if err != nil {
 			return
@@ -2425,8 +2425,8 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "40_scatter" {
-		vd, err := buildScatter2("40_scatter", []string{"pie_40whackamole", "pie_40magician", "pie_40dragonball", "pie_40wrathofthor", "pie_40magicbean", "pie_40dnp"}, 100, []float32{
-			1.0, 1.0, 35 / 20.0, 35 / 30.0, 35 / 40.0, 35 / 60.0,
+		vd, err := buildScatter2("40_scatter", []string{"pie_40whackamole", "pie_40magician", "pie_40dragonball", "pie_40wrathofthor", "pie_40magicbean", "pie_40dnp", "pie_40legendary"}, 100, []float32{
+			1.0, 1.0, 35 / 20.0, 35 / 30.0, 35 / 40.0, 35 / 60.0, 30 / 60.0,
 		}, 200000)
 		if err != nil {
 			return
@@ -2439,8 +2439,8 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "50_scatter" {
-		vd, err := buildScatter2("50_scatter", []string{"pie_50whackamole", "pie_50magician", "pie_50dragonball", "pie_50wrathofthor", "pie_50magicbean", "pie_50dnp"}, 100, []float32{
-			1.0, 1.0, 35 / 20.0, 35 / 30.0, 35 / 40.0, 35 / 60.0,
+		vd, err := buildScatter2("50_scatter", []string{"pie_50whackamole", "pie_50magician", "pie_50dragonball", "pie_50wrathofthor", "pie_50magicbean", "pie_50dnp", "pie_50legendary"}, 100, []float32{
+			1.0, 1.0, 35 / 20.0, 35 / 30.0, 35 / 40.0, 35 / 60.0, 30 / 60.0,
 		}, 200000)
 		if err != nil {
 			return
@@ -2453,8 +2453,8 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "60_scatter" {
-		vd, err := buildScatter2("60_scatter", []string{"pie_60whackamole", "pie_60magician", "pie_60dragonball", "pie_60wrathofthor", "pie_60magicbean", "pie_60dnp"}, 100, []float32{
-			1.0, 1.0, 35 / 20.0, 35 / 30.0, 35 / 40.0, 35 / 60.0,
+		vd, err := buildScatter2("60_scatter", []string{"pie_60whackamole", "pie_60magician", "pie_60dragonball", "pie_60wrathofthor", "pie_60magicbean", "pie_60dnp", "pie_60legendary"}, 100, []float32{
+			1.0, 1.0, 35 / 20.0, 35 / 30.0, 35 / 40.0, 35 / 60.0, 30 / 60.0,
 		}, 200000)
 		if err != nil {
 			return
@@ -2467,8 +2467,8 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "70_scatter" {
-		vd, err := buildScatter2("70_scatter", []string{"pie_70whackamole", "pie_70magician", "pie_70dragonball", "pie_70wrathofthor", "pie_70magicbean", "pie_70dnp"}, 100, []float32{
-			1.0, 1.0, 35 / 20.0, 35 / 30.0, 35 / 40.0, 35 / 60.0,
+		vd, err := buildScatter2("70_scatter", []string{"pie_70whackamole", "pie_70magician", "pie_70dragonball", "pie_70wrathofthor", "pie_70magicbean", "pie_70dnp", "pie_70legendary"}, 100, []float32{
+			1.0, 1.0, 35 / 20.0, 35 / 30.0, 35 / 40.0, 35 / 60.0, 30 / 60.0,
 		}, 200000)
 		if err != nil {
 			return
@@ -2481,8 +2481,8 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "80_scatter" {
-		vd, err := buildScatter2("80_scatter", []string{"pie_80whackamole", "pie_80magician", "pie_80dragonball", "pie_80wrathofthor", "pie_80magicbean", "pie_80dnp"}, 100, []float32{
-			1.0, 1.0, 35 / 20.0, 35 / 30.0, 35 / 40.0, 35 / 60.0,
+		vd, err := buildScatter2("80_scatter", []string{"pie_80whackamole", "pie_80magician", "pie_80dragonball", "pie_80wrathofthor", "pie_80magicbean", "pie_80dnp", "pie_80legendary"}, 100, []float32{
+			1.0, 1.0, 35 / 20.0, 35 / 30.0, 35 / 40.0, 35 / 60.0, 30 / 60.0,
 		}, 200000)
 		if err != nil {
 			return
@@ -2495,8 +2495,8 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "90_scatter" {
-		vd, err := buildScatter2("90_scatter", []string{"pie_90whackamole", "pie_90magician", "pie_90dragonball", "pie_90wrathofthor", "pie_90magicbean", "pie_90dnp"}, 100, []float32{
-			1.0, 1.0, 35 / 20.0, 35 / 30.0, 35 / 40.0, 35 / 60.0,
+		vd, err := buildScatter2("90_scatter", []string{"pie_90whackamole", "pie_90magician", "pie_90dragonball", "pie_90wrathofthor", "pie_90magicbean", "pie_90dnp", "pie_90legendary"}, 100, []float32{
+			1.0, 1.0, 35 / 20.0, 35 / 30.0, 35 / 40.0, 35 / 60.0, 30 / 60.0,
 		}, 200000)
 		if err != nil {
 			return
@@ -2509,8 +2509,8 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "100_scatter" {
-		vd, err := buildScatter2("100_scatter", []string{"pie_100whackamole", "pie_100magician", "pie_100dragonball", "pie_100wrathofthor", "pie_100magicbean", "pie_100dnp"}, 100, []float32{
-			1.0, 1.0, 35 / 20.0, 35 / 30.0, 35 / 40.0, 35 / 60.0,
+		vd, err := buildScatter2("100_scatter", []string{"pie_100whackamole", "pie_100magician", "pie_100dragonball", "pie_100wrathofthor", "pie_100magicbean", "pie_100dnp", "pie_100legendary"}, 100, []float32{
+			1.0, 1.0, 35 / 20.0, 35 / 30.0, 35 / 40.0, 35 / 60.0, 30 / 60.0,
 		}, 200000)
 		if err != nil {
 			return
@@ -2523,8 +2523,8 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "200_scatter" {
-		vd, err := buildScatter2("200_scatter", []string{"pie_200whackamole", "pie_200magician", "pie_200dragonball", "pie_200wrathofthor", "pie_200magicbean", "pie_200dnp"}, 100, []float32{
-			1.0, 1.0, 35 / 20.0, 35 / 30.0, 35 / 40.0, 35 / 60.0,
+		vd, err := buildScatter2("200_scatter", []string{"pie_200whackamole", "pie_200magician", "pie_200dragonball", "pie_200wrathofthor", "pie_200magicbean", "pie_200dnp", "pie_200legendary"}, 100, []float32{
+			1.0, 1.0, 35 / 20.0, 35 / 30.0, 35 / 40.0, 35 / 60.0, 30 / 60.0,
 		}, 200000)
 		if err != nil {
 			return
@@ -2537,8 +2537,8 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(jsonBytes)
 	} else if token == "150_scatter" {
-		vd, err := buildScatter2("150_scatter", []string{"pie_150whackamole", "pie_150magician", "pie_150dragonball", "pie_150wrathofthor", "pie_150magicbean", "pie_150dnp"}, 100, []float32{
-			1.0, 1.0, 35 / 20.0, 35 / 30.0, 35 / 40.0, 35 / 60.0,
+		vd, err := buildScatter2("150_scatter", []string{"pie_150whackamole", "pie_150magician", "pie_150dragonball", "pie_150wrathofthor", "pie_150magicbean", "pie_150dnp", "pie_150legendary"}, 100, []float32{
+			1.0, 1.0, 35 / 20.0, 35 / 30.0, 35 / 40.0, 35 / 60.0, 30 / 60.0,
 		}, 200000)
 		if err != nil {
 			return
@@ -3250,6 +3250,324 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 		vd, err := buildMulti("multiline14", []string{"pie_10dnp", "pie_20dnp", "pie_30dnp",
 			"pie_40dnp", "pie_50dnp", "pie_60dnp", "pie_70dnp", "pie_80dnp",
 			"pie_90dnp", "pie_100dnp", "pie_150dnp", "pie_200dnp"})
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_10legendary" {
+		vd, err := buildPie("pie_10legendary", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_20legendary" {
+		vd, err := buildPie("pie_20legendary", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_30legendary" {
+		vd, err := buildPie("pie_30legendary", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_40legendary" {
+		vd, err := buildPie("pie_40legendary", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_50legendary" {
+		vd, err := buildPie("pie_50legendary", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_60legendary" {
+		vd, err := buildPie("pie_60legendary", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_70legendary" {
+		vd, err := buildPie("pie_70legendary", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_80legendary" {
+		vd, err := buildPie("pie_80legendary", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_90legendary" {
+		vd, err := buildPie("pie_90legendary", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_100legendary" {
+		vd, err := buildPie("pie_100legendary", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_150legendary" {
+		vd, err := buildPie("pie_150legendary", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_200legendary" {
+		vd, err := buildPie("pie_200legendary", 100)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_10legendary_scatter" {
+		vd, err := buildScatter("pie_10legendary", 100, 60/35.0, 200000)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_20legendary_scatter" {
+		vd, err := buildScatter("pie_20legendary", 100, 60/35.0, 200000)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_30legendary_scatter" {
+		vd, err := buildScatter("pie_30legendary", 100, 60/35.0, 200000)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_40legendary_scatter" {
+		vd, err := buildScatter("pie_40legendary", 100, 60/35.0, 200000)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_50legendary_scatter" {
+		vd, err := buildScatter("pie_50legendary", 100, 60/35.0, 200000)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_60legendary_scatter" {
+		vd, err := buildScatter("pie_60legendary", 100, 60/35.0, 200000)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_70legendary_scatter" {
+		vd, err := buildScatter("pie_70legendary", 100, 60/35.0, 200000)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_80legendary_scatter" {
+		vd, err := buildScatter("pie_80legendary", 100, 60/35.0, 200000)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_90legendary_scatter" {
+		vd, err := buildScatter("pie_90legendary", 100, 60/35.0, 200000)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_100legendary_scatter" {
+		vd, err := buildScatter("pie_100legendary", 100, 60/35.0, 200000)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_150legendary_scatter" {
+		vd, err := buildScatter("pie_150legendary", 100, 60/35.0, 200000)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "pie_200legendary_scatter" {
+		vd, err := buildScatter("pie_200legendary", 100, 60/35.0, 200000)
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "multiline15" {
+		vd, err := buildMulti("multiline15", []string{"pie_10legendary_scatter", "pie_20legendary_scatter",
+			"pie_30legendary_scatter", "pie_40legendary_scatter", "pie_50legendary_scatter",
+			"pie_60legendary_scatter", "pie_70legendary_scatter", "pie_80legendary_scatter",
+			"pie_90legendary_scatter", "pie_100legendary_scatter", "pie_150legendary_scatter",
+			"pie_200legendary_scatter"})
+		if err != nil {
+			return
+		}
+
+		jsonBytes, err := json.Marshal(vd)
+		if err != nil {
+			return
+		}
+
+		w.Write(jsonBytes)
+	} else if token == "multiline16" {
+		vd, err := buildMulti("multiline16", []string{"pie_10legendary", "pie_20legendary", "pie_30legendary",
+			"pie_40legendary", "pie_50legendary", "pie_60legendary", "pie_70legendary", "pie_80legendary",
+			"pie_90legendary", "pie_100legendary", "pie_150legendary", "pie_200legendary"})
 		if err != nil {
 			return
 		}
