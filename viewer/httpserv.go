@@ -924,10 +924,91 @@ func buildDataset2D(fn string, off int) (*viewerdbpb.Dataset2D, error) {
 	return pd, nil
 }
 
+const maxint32 = int32(^uint32(0) >> 1)
+const minint32 = ^maxint32
+
+func countDataset2DRange(fn string, off int) (int32, int32, int32, int32, error) {
+	fi, err := os.Open("./test/" + fn + ".json")
+	if err != nil {
+		return minint32, maxint32, minint32, maxint32, err
+	}
+
+	defer fi.Close()
+	fd, err := ioutil.ReadAll(fi)
+	if err != nil {
+		return minint32, maxint32, minint32, maxint32, err
+	}
+
+	up := &DTUserPie{}
+	err = json.Unmarshal(fd, &up)
+	if err != nil {
+		return minint32, maxint32, minint32, maxint32, err
+	}
+
+	xmin := maxint32
+	ymin := maxint32
+	xmax := minint32
+	ymax := minint32
+
+	// pd := &viewerdbpb.Dataset2D{
+	// 	XType: viewerdbpb.ValueType_INT32,
+	// 	YType: viewerdbpb.ValueType_INT32,
+	// 	Name:  fn,
+	// }
+
+	// mapnums := make(map[int32]*DTUserPieNode)
+
+	for _, v := range up.Arr {
+		if v.Destmoney < xmin {
+			xmin = v.Destmoney
+		}
+
+		if v.Destmoney > xmax {
+			xmax = v.Destmoney
+		}
+
+		if int32(v.Nums) < ymin {
+			ymin = int32(v.Nums)
+		}
+
+		if int32(v.Nums) > ymax {
+			ymax = int32(v.Nums)
+		}
+
+		// insMapPieNode(mapnums, v, int32(off))
+	}
+
+	// for _, v := range mapnums {
+	// 	pd.XArrInt32 = append(pd.XArrInt32, v.Destmoney)
+	// 	pd.YArrInt32 = append(pd.YArrInt32, int32(v.Nums))
+	// }
+
+	// vjd.Scatter2.Lst = append(vjd.Scatter2.Lst, pd)
+	// }
+
+	// vjd := &viewerdbpb.ViewerData_Scatter{
+	// 	Scatter: pd,
+	// }
+
+	// vd := &viewerdbpb.ViewerData{
+	// 	Type:  viewerdbpb.ViewerType_SCATTER2,
+	// 	Title: token,
+	// 	Token: token,
+	// 	Data:  vjd,
+	// }
+
+	return xmin, xmax, ymin, ymax, nil
+}
+
 func buildScatter3(token string, arr []scatter3, zval []string, datasetname string, off int) (*viewerdbpb.ViewerData, error) {
 	pd := &viewerdbpb.Scatter3Data{}
 
 	if datasetname == "" {
+		xmin := maxint32
+		ymin := maxint32
+		xmax := minint32
+		ymax := minint32
+
 		for _, v := range arr {
 			b3 := &viewerdbpb.Scatter3{
 				Category: v.name,
@@ -935,9 +1016,42 @@ func buildScatter3(token string, arr []scatter3, zval []string, datasetname stri
 
 			for _, n := range v.fn {
 				b3.DatasetName = append(b3.DatasetName, n)
+
+				cxmin, cxmax, cymin, cymax, err := countDataset2DRange(n, off)
+				if err != nil {
+					if cxmin < xmin {
+						xmin = cxmin
+					}
+
+					if cxmax > xmax {
+						xmax = cxmax
+					}
+
+					if cymin < ymin {
+						ymin = cymin
+					}
+
+					if cymax > ymax {
+						ymax = cymax
+					}
+				}
 			}
 
 			pd.Scatter3 = append(pd.Scatter3, b3)
+		}
+
+		pd.XAxis = &viewerdbpb.CoordinateConfig{
+			ValType:     viewerdbpb.ValueType_INT32,
+			CType:       viewerdbpb.CoordinateType_MINMAXRANGE,
+			MinValInt32: xmin,
+			MaxValInt32: xmax,
+		}
+
+		pd.YAxis = &viewerdbpb.CoordinateConfig{
+			ValType:     viewerdbpb.ValueType_INT32,
+			CType:       viewerdbpb.CoordinateType_MINMAXRANGE,
+			MinValInt32: ymin,
+			MaxValInt32: ymax,
 		}
 
 		pd.ZVal = &viewerdbpb.Dataset{

@@ -31,6 +31,41 @@ enum ValueType {
     STRING = 5;
 }
 
+// CoordinateType - Coordinate type
+//                - 坐标系类型，譬如自动适配范围，定义范围等
+enum CoordinateType {
+    // auto range
+    // 自动适配范围
+    AUTORANGE = 0;
+    // min range
+    // 仅强制最小range，最大还是自适应
+    MINRANGE = 1;
+    // max range
+    // 仅强制最大range，最小还是自适应    
+    MAXRANGE = 2;
+    // min & max range
+    // 强制range
+    MINMAXRANGE = 3;
+}
+
+// CoordinateConfig - Coordinate config
+message CoordinateConfig {
+    ValueType valType = 1;
+    CoordinateType cType = 2;
+
+    int32 minValInt32 = 10;
+    int64 minValInt64 = 11;
+    float minValFloat32 = 12;
+    double minValFloat64 = 13;
+    string minValString = 14;
+
+    int32 maxValInt32 = 20;
+    int64 maxValInt64 = 21;
+    float maxValFloat32 = 22;
+    double maxValFloat64 = 23;
+    string maxValString = 24;
+}
+
 // DTGame6ArrayType - Array Type
 //                  - 数据类型
 enum DTGame6ArrayType {
@@ -208,6 +243,9 @@ message Scatter3Data {
     map<string, Dataset2D> datasets = 1;
     repeated Scatter3 scatter3 = 2;
     Dataset zVal = 3;
+
+    CoordinateConfig xAxis = 100;
+    CoordinateConfig yAxis = 101;
 }
 
 // BoxplotNode - boxplot node
