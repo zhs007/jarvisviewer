@@ -1018,7 +1018,7 @@ func buildScatter3(token string, arr []scatter3, zval []string, datasetname stri
 				b3.DatasetName = append(b3.DatasetName, n)
 
 				cxmin, cxmax, cymin, cymax, err := countDataset2DRange(n, off)
-				if err != nil {
+				if err == nil {
 					if cxmin < xmin {
 						xmin = cxmin
 					}
