@@ -950,15 +950,13 @@ func countDataset2DRange(fn string, off int) (int32, int32, int32, int32, error)
 	xmax := minint32
 	ymax := minint32
 
-	// pd := &viewerdbpb.Dataset2D{
-	// 	XType: viewerdbpb.ValueType_INT32,
-	// 	YType: viewerdbpb.ValueType_INT32,
-	// 	Name:  fn,
-	// }
-
-	// mapnums := make(map[int32]*DTUserPieNode)
+	mapnums := make(map[int32]*DTUserPieNode)
 
 	for _, v := range up.Arr {
+		insMapPieNode(mapnums, v, int32(off))
+	}
+
+	for _, v := range mapnums {
 		if v.Destmoney < xmin {
 			xmin = v.Destmoney
 		}
@@ -974,9 +972,35 @@ func countDataset2DRange(fn string, off int) (int32, int32, int32, int32, error)
 		if int32(v.Nums) > ymax {
 			ymax = int32(v.Nums)
 		}
-
-		// insMapPieNode(mapnums, v, int32(off))
 	}
+
+	// pd := &viewerdbpb.Dataset2D{
+	// 	XType: viewerdbpb.ValueType_INT32,
+	// 	YType: viewerdbpb.ValueType_INT32,
+	// 	Name:  fn,
+	// }
+
+	// mapnums := make(map[int32]*DTUserPieNode)
+
+	// for _, v := range up.Arr {
+	// 	if v.Destmoney < xmin {
+	// 		xmin = v.Destmoney
+	// 	}
+
+	// 	if v.Destmoney > xmax {
+	// 		xmax = v.Destmoney
+	// 	}
+
+	// 	if int32(v.Nums) < ymin {
+	// 		ymin = int32(v.Nums)
+	// 	}
+
+	// 	if int32(v.Nums) > ymax {
+	// 		ymax = int32(v.Nums)
+	// 	}
+
+	// 	// insMapPieNode(mapnums, v, int32(off))
+	// }
 
 	// for _, v := range mapnums {
 	// 	pd.XArrInt32 = append(pd.XArrInt32, v.Destmoney)
