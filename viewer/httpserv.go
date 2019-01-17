@@ -3726,7 +3726,16 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 			boxplot3{name: "dragonball", fn: []string{"pie_10dragonball", "pie_20dragonball", "pie_30dragonball", "pie_40dragonball", "pie_50dragonball", "pie_60dragonball",
 				"pie_70dragonball", "pie_80dragonball", "pie_90dragonball", "pie_100dragonball", "pie_150dragonball", "pie_200dragonball"}},
 			boxplot3{name: "wrathofthor", fn: []string{"pie_10wrathofthor", "pie_20wrathofthor", "pie_30wrathofthor", "pie_40wrathofthor", "pie_50wrathofthor", "pie_60wrathofthor",
-				"pie_70wrathofthor", "pie_80wrathofthor", "pie_90wrathofthor", "pie_100wrathofthor", "pie_150wrathofthor", "pie_200wrathofthor"}}},
+				"pie_70wrathofthor", "pie_80wrathofthor", "pie_90wrathofthor", "pie_100wrathofthor", "pie_150wrathofthor", "pie_200wrathofthor"}},
+			boxplot3{name: "dnp", fn: []string{"pie_10dnp", "pie_20dnp", "pie_30dnp",
+				"pie_40dnp", "pie_50dnp", "pie_60dnp", "pie_70dnp", "pie_80dnp",
+				"pie_90dnp", "pie_100dnp", "pie_150dnp", "pie_200dnp"}},
+			boxplot3{name: "magicbean", fn: []string{"pie_10magicbean", "pie_20magicbean", "pie_30magicbean",
+				"pie_40magicbean", "pie_50magicbean", "pie_60magicbean", "pie_70magicbean", "pie_80magicbean",
+				"pie_90magicbean", "pie_100magicbean", "pie_150magicbean", "pie_200magicbean"}},
+			boxplot3{name: "legendary", fn: []string{"pie_10legendary", "pie_20legendary", "pie_30legendary",
+				"pie_40legendary", "pie_50legendary", "pie_60legendary", "pie_70legendary", "pie_80legendary",
+				"pie_90legendary", "pie_100legendary", "pie_150legendary", "pie_200legendary"}}},
 			[]string{"10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "150", "200"}, dataset)
 		if err != nil {
 			return
@@ -3748,7 +3757,13 @@ func (s *HTTPServer) onViewerData(w http.ResponseWriter, r *http.Request) {
 			scatter3{name: "dragonball", fn: []string{"pie_10dragonball", "pie_20dragonball", "pie_30dragonball", "pie_40dragonball", "pie_50dragonball", "pie_60dragonball",
 				"pie_70dragonball", "pie_80dragonball", "pie_90dragonball", "pie_100dragonball", "pie_150dragonball", "pie_200dragonball"}},
 			scatter3{name: "wrathofthor", fn: []string{"pie_10wrathofthor", "pie_20wrathofthor", "pie_30wrathofthor", "pie_40wrathofthor", "pie_50wrathofthor", "pie_60wrathofthor",
-				"pie_70wrathofthor", "pie_80wrathofthor", "pie_90wrathofthor", "pie_100wrathofthor", "pie_150wrathofthor", "pie_200wrathofthor"}}},
+				"pie_70wrathofthor", "pie_80wrathofthor", "pie_90wrathofthor", "pie_100wrathofthor", "pie_150wrathofthor", "pie_200wrathofthor"}},
+			scatter3{name: "magicbean", fn: []string{"pie_10magicbean", "pie_20magicbean", "pie_30magicbean",
+				"pie_40magicbean", "pie_50magicbean", "pie_60magicbean", "pie_70magicbean", "pie_80magicbean",
+				"pie_90magicbean", "pie_100magicbean", "pie_150magicbean", "pie_200magicbean"}},
+			scatter3{name: "legendary", fn: []string{"pie_10legendary", "pie_20legendary", "pie_30legendary",
+				"pie_40legendary", "pie_50legendary", "pie_60legendary", "pie_70legendary", "pie_80legendary",
+				"pie_90legendary", "pie_100legendary", "pie_150legendary", "pie_200legendary"}}},
 			[]string{"10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "150", "200"}, dataset, 100)
 		if err != nil {
 			return
