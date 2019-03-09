@@ -32,7 +32,11 @@ func NewViewer(cfg *Config) (*Viewer, error) {
 
 	v.serv = serv
 
-	node := jarviscore.NewNode(jcfg)
+	node, err := jarviscore.NewNode(jcfg)
+	if err != nil {
+		return nil, err
+	}
+
 	node.RegCtrl(CtrlTypeViewer, &CtrlJarvisViewer{})
 	node.SetNodeTypeInfo(basedef.JARVISNODETYPE, basedef.VERSION)
 

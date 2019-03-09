@@ -23,7 +23,7 @@ var typeMutation = graphql.NewObject(graphql.ObjectConfig{
 					return nil, ankadb.ErrCtxAnkaDB
 				}
 
-				curdb := anka.MgrDB.GetDB("viewerdb")
+				curdb := anka.GetDBMgr().GetDB("viewerdb")
 				if curdb == nil {
 					return nil, ankadb.ErrCtxCurDB
 				}
